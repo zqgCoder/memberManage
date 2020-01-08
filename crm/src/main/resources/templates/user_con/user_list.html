@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>用户消费记录</title>
+    <!-- jQuery -->
+    <script th:src="@{/asserts/cus/js/jquery-3.3.1.min.js}"             type="text/javascript"></script>
+    <!-- 引入Bootstrap样式 -->
+    <link rel="stylesheet" th:href="@{/asserts/cus/css/bootstrap.min.css}">
+    <!-- 引入Bootstrap-table样式 -->
+    <script th:src="@{/asserts/cus/js/jquery.dataTables.min.js}"        type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/jquery.dataTables.bootstrap.js}"  type="text/javascript"></script>
+
+    <link rel="stylesheet" th:href="@{/asserts/cus/css/sweetalert.css}">
+    <link rel="stylesheet" th:href="@{/asserts/cus/css/bootstrap-table.min.css}">
+    <!-- BS-table -->
+    <script th:src="@{/asserts/cus/js/bootstrap-table.min.js}"></script>
+
+    <!-- 引入弹框-->
+    <script th:src="@{/asserts/cus/js/sweetalert.min.js}"  	type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/sweetalert-dev.js}"  	type="text/javascript"></script>
+
+</head>
+<body>
+<style>
+    .data_table th > div {
+        text-align: center;
+    }
+</style>
+
+<!-- 搜索框 -->
+<div class="row">
+    <div class="col-md-12">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">消费记录</a>
+                </div>
+                <form class="navbar-form navbar-left" role="search" th:action="@{/customer/user_consume(courseid=${courseid})}" method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control search_courseid" id="search_courseid" placeholder="搜索课程ID" name="courseid" th:value="${courseid}">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-search">搜索</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- data-search="true" 添加搜索框 ，将搜索框放在左边，并且在按下enter键后搜索-->
+<table data-toggle="table">
+    <thead>
+    <tr>
+        <th data-field="id">订单编号</th>
+        <th data-field="userid">用户名</th>
+        <th data-field="courseid">课程编号</th>
+        <th data-field="time">消费时间</th>
+        <th data-field="money">花费金额</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c,status : ${page.getRecords()}">
+        <td th:text="${c.id}" data-sortable="true">订单编号</td>
+        <td th:text="${session.user.getUsername()}">用户名</td>
+        <td th:text="${c.courseid}" data-sortable="true">课程编号</td>
+        <td th:text="${c.time}" data-sortable="true">消费时间</td>
+        <td th:text="${c.money}" data-sortable="true">花费金额</td>
+    </tr>
+    </tbody>
+</table>
+
+<!--分页 -->
+<div class="row">
+    <div class="col-md-12">
+        <center>
+            <ul class="pagination">
+                <li th:if="${page.current != 1}">
+                    <a href="javascript:void(0)" th:onclick="go(1,[[${courseid}]])">首页</a>
+                </li>
+                <li th:if="${page.current != 1}">
+                    <a href="javascript:void(0)" th:onclick="go([[${page.current-1}]],[[${courseid}]])">上一页</a>
+                </li>
+                <li><a href="#">[[${page.current}]] / [[${page.pages}]]</a></li>
+                <li th:if="${page.current != page.pages}">
+                    <a href="javascript:void(0)" th:onclick="go([[${page.current+1}]],[[${courseid}]])">下一页</a>
+                </li>
+                <li th:if="${page.current != page.pages}">
+                    <a href="javascript:void(0)" th:onclick="go([[${page.pages}]],[[${courseid}]])">尾页</a>
+                </li>
+            </ul>
+        </center>
+    </div>
+</div>
+<script>
+    //分页
+    function go(pageNow, courseid) {
+        var nextPage = "/crm/myAdmin/customer_list?pageNow=" + pageNow;
+        if (courseid != null) {
+            nextPage += "&course_id=" + courseid;
+        }
+        window.location = nextPage;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>用户登录页面</title>
+
+	<link th:href="@{/asserts/cus/css/bootstrap.min.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/asserts/cus/css/font-awesome.min.css}" />
+
+	<link rel="stylesheet" th:href="@{/asserts/cus/css/font-awesome-ie7.min.css}" />
+
+	<link rel="stylesheet" th:href="@{/asserts/cus/css/ace.min.css}" />
+	<link rel="stylesheet" th:href="@{/asserts/cus/css/ace-rtl.min.css}" />
+	<link rel="stylesheet" th:href="@{/asserts/cus/css/sweetalert.css}">
+
+	<script th:src="@{/asserts/cus/js/jquery-2.0.3.min.js}" type="text/javascript"></script>
+	<script th:src="@{/asserts/cus/js/sweetalert.min.js}"  	type="text/javascript"></script>
+	<script th:src="@{/asserts/cus/js/sweetalert-dev.js}"  	type="text/javascript"></script>
+	<script th:src="@{/asserts/cus/js/md5.js}"  			type="text/javascript"></script>
+
+</head>
+
+<body class="login-layout">
+<div class="main-container">
+	<div class="main-content">
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="login-container">
+					<div class="center">
+						<h1>
+							<i class="icon-leaf green"></i>
+							<span class="red">健身中心</span>
+							<span class="white">会员管理系统</span>
+						</h1>
+						<h4 class="blue">&copy; Company Name</h4>
+					</div>
+
+					<div class="space-6"></div>
+
+					<div class="position-relative">
+						<div id="login-box" class="login-box visible widget-box no-border">
+							<div class="widget-body">
+								<div class="widget-main">
+									<h4 class="header blue lighter bigger">
+										<i class="icon-coffee green"></i>
+										请填写登录信息
+									</h4>
+
+									<div class="space-6"></div>
+
+									<form>
+										<fieldset>
+											<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control login_name" placeholder="Username" id="login_name" />
+															<i class="icon-user"></i>
+														</span>
+											</label>
+
+											<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control login_pwd" placeholder="Password" id="login_pwd" />
+															<i class="icon-lock"></i>
+														</span>
+											</label>
+
+											<div class="space"></div>
+
+											<div class="clearfix">
+												<button type="reset" class="width-35 pull-left btn btn-sm btn-primary">
+													<i class="icon-key"></i>
+													重置
+												</button>
+
+												<button type="button" class="width-35 pull-right btn btn-sm btn-primary
+													user-login-btn" id="user-login-btn" onclick="judge_login()">
+													<i class="icon-key"></i>
+													登录
+												</button>
+											</div>
+
+											<div class="space-4"></div>
+										</fieldset>
+									</form>
+									<div class="toolbar center" style="padding: 9px 18px; margin-top: 4px;">
+										<a href="#" onclick="show_reg('signup-box');" class="user-signup-link">
+											还没有账号？去注册
+											<i class="icon-arrow-right"></i>
+										</a>
+									</div>
+								</div>
+							</div><!-- /widget-body -->
+						</div><!-- /login-box -->
+
+						<div id="signup-box" class="signup-box widget-box no-border">
+							<div class="widget-body">
+								<div class="widget-main">
+									<h4 class="header green lighter bigger">
+										<i class="icon-group blue"></i>
+										新用户注册
+									</h4>
+
+									<div class="space-6"></div>
+									<p> 输入你的信息进行注册： </p>
+
+									<form>
+										<fieldset>
+
+											<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control reg_name" placeholder="Username" id="reg_name" />
+															<i class="icon-user"></i>
+														</span>
+											</label>
+
+											<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control reg_pwd" placeholder="Password" id="reg_pwd" />
+															<i class="icon-lock"></i>
+														</span>
+											</label>
+
+											<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control reg_pwd2" placeholder="Repeat password" id="reg_pwd2" />
+															<i class="icon-retweet"></i>
+														</span>
+											</label>
+
+
+											<div class="space-24"></div>
+
+											<div class="clearfix">
+												<button type="reset" class="width-30 pull-left btn btn-sm">
+													<i class="icon-refresh"></i>
+													重置
+												</button>
+
+												<button type="button" class="width-65 pull-right btn btn-sm btn-success user-signup-btn" id="user-signup-btn" onclick="judge_reg()">
+													<i class="icon-key"></i>
+													注册
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+
+								<div class="toolbar center">
+									<a href="#" onclick="show_login('login-box'); return false;" class="back-to-login-link">
+										<i class="icon-arrow-left"></i>
+										返回登录
+									</a>
+								</div>
+							</div><!-- /widget-body -->
+						</div><!-- /signup-box -->
+					</div><!-- /position-relative -->
+				</div>
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div>
+</div><!-- /.main-container -->
+
+</body>
+</html>
+<script type="text/javascript">
+
+	function show_reg(id){
+		//alert("注册");
+		jQuery('.widget-box.visible').removeClass('visible');
+		jQuery('#'+id).addClass('visible');
+	}
+
+	function show_login(id){
+		//alert("登录");
+		jQuery('.widget-box.visible').removeClass('visible');
+		jQuery('#'+id).addClass('visible');
+	}
+
+	function judge_login() {
+		var username = $("#login_name").val();
+		var pwd = $("#login_pwd").val();
+		if(username == null || username == ""){
+			swal("用户名不能为空");
+			return false;
+		} else if(pwd == "") {
+			swal("密码不能为空");
+			return false;
+		} else {
+			upd = md5(pwd);
+			$.post("/crm/user/login",{username: username, password : upd}, function (data) {
+				if(data == 0) {
+					swal("登录失败");
+					$("#login_name").val("").focus();
+					$("#login_pwd").val("");
+				} else {
+					window.location = "/crm/customer/user_center";
+				}
+			})
+			return true;
+		}
+	}
+
+	function judge_reg() {
+		var username = $("#reg_name").val();
+		var pwd = $("#reg_pwd").val();
+		var pwd2 = $("#reg_pwd2").val();
+		var patr = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
+		var patrn = /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/;
+		if(username =="" || username == null){
+			//用户名不能为空
+			swal("用户名不能为空");
+			return false;
+		} else if(pwd == "" || pwd2 == ""){
+			//密码不能为空
+			swal("密码不能为空");
+			return false;
+		} else if (pwd2 != pwd) {
+			//两次密码不一致
+			swal("两次密码不一致");
+			return false;
+		} else if(!patr.exec(username)){
+			//用户名太简单
+			swal("用户名太简单");
+			return false;
+		} else if(!patrn.exec(pwd)){
+			swal("密码太简单");
+		} else{
+			login_pwd = md5(pwd)
+			$.post("/crm/user/register", {username: username, password: login_pwd}, function (data) {
+				if (data == 3) {
+					swal({title:"注册失败", text:"该用户已经存在",timer:2000}).then(
+					)
+					$("#reg_name").val("").focus();
+					$("#reg_pwd").val("");
+					$("#reg_pwd2").val("");
+				} else if(data == 0) {
+					swal({title:"注册失败", text:"由于网络原因，请稍后重新注册",timer:2000}).then(
+					)
+					//swal("注册失败","由于网络原因，请稍后重新注册","error",1000);
+					$("#reg_name").val("").focus();
+					$("#reg_pwd").val("");
+					$("#reg_pwd2").val("");
+				} else if(data == 1) {
+					swal("注册成功", "已经成功注册", "success",1000);
+					window.location = "/crm/user/index";
+				}
+			})
+				return true;
+			}
+	}
+
+</script>
