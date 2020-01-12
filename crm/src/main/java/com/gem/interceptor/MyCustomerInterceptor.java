@@ -21,6 +21,7 @@ public class MyCustomerInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user != null) {
+            System.out.println("在session中找到了user");
             return true;
         }
         response.sendRedirect("/crm/user/index?info=1");

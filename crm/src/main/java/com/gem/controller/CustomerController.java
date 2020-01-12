@@ -37,7 +37,6 @@ public class CustomerController {
     public String user_consume(Model model, HttpSession session, Integer pageNow, Long courseid) {
         System.out.println("进入到controller包下的CustomerController类中的 user_consume（）方法---------->");
 
-        System.out.println("hhhhhhhhhhhhhhhhh:" + courseid);
         User user = (User)session.getAttribute("user");
 
         Page<Customer> page = null;

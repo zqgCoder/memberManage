@@ -59,19 +59,19 @@
     <div class="menu">
 	  <div class="container">
 		 <div class="logo">
-			<a th:href="@{/crm}"><img th:src="@{/asserts/zqg/images/logo.png}" alt=""/></a>
+			<a th:href="@{/}"><img th:src="@{/asserts/zqg/images/logo.png}" alt=""/></a>
 		 </div>
 		 <div class="h_menu4"><!-- start h_menu4 -->
 		   <a class="toggleMenu" href="#">Menu</a>
 			 <ul class="nav">
-				 <li class="active"><a th:href="@{/crm}">Home</a></li>
+				 <li class="active"><a th:href="@{/}">Home</a></li>
 				 <li><a th:href="@{/zqg/about}">About</a></li>
 				 <li><a th:href="@{/zqg/trainers}">Trainers</a></li>
 				 <li><a th:href="@{/zqg/single_class}">Classes</a></li>
 				 <li><a th:href="@{/zqg/blog}">Blog</a></li>
 				 <li><a th:href="@{/zqg/pricing}">Pricing</a></li>
 				 <li><a th:href="@{/zqg/contact}">Contact</a></li>
-				 <li><a th:href="@{/user/index}">Login</a></li>
+				 <li><a th:href="@{${session.user!=null ? '/customer/user_center' : '/user/index' }}" th:text="${session.user!=null ? '个人中心' : '登录'}" id="login_aaa">登录</a></li>
 			 </ul>
 			 <script type="text/javascript" th:src="@{/asserts/zqg/js/nav.js}"></script>
 		  </div><!-- end h_menu4 -->

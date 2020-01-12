@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpSession;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
@@ -34,6 +36,9 @@ class UserControllerTest {
 
     @Test
     void update_password() {
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt + " " + ldt.getYear() );
+
     }
 
 }

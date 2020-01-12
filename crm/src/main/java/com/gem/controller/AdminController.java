@@ -6,7 +6,6 @@ import com.gem.entity.Admin;
 import com.gem.entity.Customer;
 import com.gem.entity.User;
 import com.gem.mapper.CustomerMapper;
-import com.gem.mapper.UserMapper;
 import com.gem.service.AdminService;
 import com.gem.service.CustomerService;
 import com.gem.service.UserService;
@@ -48,7 +47,7 @@ public class AdminController {
         if (birthday != null) {
             wrapper.eq("birthday", birthday);
         }
-        if(gender != null){
+        if(gender != null && gender != ""){
             wrapper.eq("gender", gender);
         }
 

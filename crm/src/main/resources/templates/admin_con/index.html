@@ -17,14 +17,14 @@
             <li class="layui-nav-item"><a href="javascript:;">
                 <img th:src="@{/asserts/cus/images/1.jpg}" class="layui-nav-img"> [[${session.admin.username}]]
             </a>
-                <dl class="layui-nav-child">
+                <!--<dl class="layui-nav-child">
                     <dd>
                         <a href="">基本资料</a>
                     </dd>
                     <dd>
                         <a th:href="@{/myAdmin/toChangePwd.action}">修改密码</a>
                     </dd>
-                </dl></li>
+                </dl>--></li>
             <li class="layui-nav-item"><a th:href="@{/myAdmin/logout(id=${session.admin.id})}">退出</a></li>
         </ul>
     </div>

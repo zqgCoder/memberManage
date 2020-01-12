@@ -22,7 +22,10 @@
 </head>
 <body>
 <style>
-    .data_table th > div {
+    #user_table th > div {
+        text-align: center;
+    }
+    #user_table tr > td {
         text-align: center;
     }
 </style>
@@ -46,7 +49,7 @@
     </div>
 </div>
 <!-- data-search="true" 添加搜索框 ，将搜索框放在左边，并且在按下enter键后搜索-->
-<table data-toggle="table">
+<table data-toggle="table" id="user_table">
     <thead>
     <tr>
         <th data-field="id">订单编号</th>
@@ -60,7 +63,7 @@
     <tbody>
     <tr th:each="c,status : ${page.getRecords()}">
         <td th:text="${c.id}" data-sortable="true">订单编号</td>
-        <td th:text="${session.user.getUsername()}">用户名</td>
+        <td th:text="${session.user.username}">用户名</td>
         <td th:text="${c.courseid}" data-sortable="true">课程编号</td>
         <td th:text="${c.time}" data-sortable="true">消费时间</td>
         <td th:text="${c.money}" data-sortable="true">花费金额</td>
@@ -93,7 +96,7 @@
 <script>
     //分页
     function go(pageNow, courseid) {
-        var nextPage = "/crm/myAdmin/customer_list?pageNow=" + pageNow;
+        var nextPage = "/crm/customer/user_consume?pageNow=" + pageNow;
         if (courseid != null) {
             nextPage += "&course_id=" + courseid;
         }

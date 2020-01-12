@@ -34,12 +34,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">用户列表</a>
                 </div>
-                <form class="navbar-form navbar-left" role="search" th:action="@{/myAdmin/user_list(id=${id},birthday=${birthday},gender=${gender})}" method="get">
+                <form class="navbar-form navbar-left" role="search" th:action="@{/myAdmin/user_list(birthday=${birthday},gender=${gender})}" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control search_name" id="search_birthday" placeholder="搜索用户生日" name="userid" th:value="${birthday}">
+                        <input type="text" class="form-control search_name" id="search_birthday" placeholder="搜索用户生日" name="birthday" th:value="${birthday}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control search_courseid" id="search_gender" placeholder="搜索性别" name="courseid" th:value="${gender}">
+                        <input type="text" class="form-control search_courseid" id="search_gender" placeholder="搜索性别" name="gender" th:value="${gender}">
                     </div>
                     <button type="submit" class="btn btn-success btn-search">搜索</button>
                     <button type="button" class="btn btn-info btn-add" onclick="add()">添加顾客</button>
@@ -82,17 +82,17 @@
         <center>
             <ul class="pagination">
                 <li th:if="${page.current != 1}">
-                    <a href="javascript:void(0)" th:onclick="go(1,[[${userid}]],[[${birthday}]],[[${gender}]])">首页</a>
+                    <a href="javascript:void(0)" th:onclick="go(1,[[${birthday}]],[[${gender}]])">首页</a>
                 </li>
                 <li th:if="${page.current != 1}">
-                    <a href="javascript:void(0)" th:onclick="go([[${page.current-1}]],[[${userid}]],[[${birthday}]],[[${gender}]])">上一页</a>
+                    <a href="javascript:void(0)" th:onclick="go([[${page.current-1}]],[[${birthday}]],[[${gender}]])">上一页</a>
                 </li>
                 <li><a href="#">[[${page.current}]] / [[${page.pages}]]</a></li>
                 <li th:if="${page.current != page.pages}">
-                    <a href="javascript:void(0)" th:onclick="go([[${page.current+1}]],[[${userid}]],[[${birthday}]],[[${gender}]])">下一页</a>
+                    <a href="javascript:void(0)" th:onclick="go([[${page.current+1}]],[[${birthday}]],[[${gender}]])">下一页</a>
                 </li>
                 <li th:if="${page.current != page.pages}">
-                    <a href="javascript:void(0)" th:onclick="go([[${page.pages}]],[[${userid}]],[[${birthday}]],[[${gender}]])">尾页</a>
+                    <a href="javascript:void(0)" th:onclick="go([[${page.pages}]],[[${birthday}]],[[${gender}]])">尾页</a>
                 </li>
             </ul>
         </center>
@@ -145,13 +145,13 @@
     }
 
     //分页 + 查找
-    function go(pageNow, userid,courseid) {
+    function go(pageNow, birthday,gender) {
         var nextPage = "/crm/myAdmin/user_list?pageNow=" + pageNow;
-        if (userid != null) {
-            nextPage += "&userid=" + userid;
+        if (birthday != null) {
+            nextPage += "&birthday=" + birthday;
         }
-        if(courseid != null) {
-            nextPage += "&courseid" + courseid;
+        if(gender != null) {
+            nextPage += "&gender" + gender;
         }
         window.location = nextPage;
     }

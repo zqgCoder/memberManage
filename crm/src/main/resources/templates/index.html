@@ -25,7 +25,6 @@
     <!-- //grid-slider -->
 </head>
 <body>
-
 <!-- start header_top -->
 <div class="header">
     <div class="container">
@@ -80,7 +79,7 @@
                 <li><a th:href="@{/zqg/blog}">Blog</a></li>
                 <li><a th:href="@{/zqg/pricing}">Pricing</a></li>
                 <li><a th:href="@{/zqg/contact}">Contact</a></li>
-                <li><a th:href="@{/user/index}">登录</a></li>
+                <li><a th:href="@{${session.user!=null ? '/customer/user_center' : '/user/index' }}" th:text="${session.user!=null ? '个人中心' : '登录'}" id="login_aaa">登录</a></li>
             </ul>
             <script type="text/javascript" th:src="@{/asserts/zqg/js/nav.js}"></script>
         </div><!-- end h_menu4 -->
