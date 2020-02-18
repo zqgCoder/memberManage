@@ -15,7 +15,7 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item"><a href="javascript:;">
-                <img th:src="@{/asserts/cus/images/1.jpg}" class="layui-nav-img"> [[${session.admin.username}]]
+                <img th:src="@{/asserts/cus/images/1.jpg}" class="layui-nav-img"> [[${session.admin.name}]]
             </a>
                 <!--<dl class="layui-nav-child">
                     <dd>
@@ -54,6 +54,28 @@
                         </dd>
                     </dl>
                 </li>
+                <!-- 课程管理 -->
+                <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">课程管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a th:href="@{/course/course_list}" target="option">课程列表</a>
+                        </dd>
+                        <dd>
+                            <a th:href="@{/course/to_course_add}" target="option">添加课程</a>
+                        </dd>
+                    </dl>
+                </li>
+                <!-- 管理员管理 -->
+                <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">管理员管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a th:href="@{/myAdmin/customer_list}" target="option">管理员列表</a>
+                        </dd>
+                        <dd>
+                            <a th:href="@{/myAdmin/to_customer_add}" target="option">添加管理员</a>
+                        </dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>
@@ -63,7 +85,8 @@
         <!-- 内容主体区域 -->
 
         <div style="padding: 15px;height:100%;">
-            <iframe id="option" name="option" th:src="@{/myAdmin/customer_list}" style="overflow: visible;" scrolling="yes" frameborder="yes" width="100%" height="100%"></iframe>
+            <iframe id="option" name="option" th:src="@{/myAdmin/customer_list}" style="overflow: visible;"
+                    scrolling="yes" frameborder="yes" width="100%" height="100%"></iframe>
         </div>
     </div>
 
@@ -74,7 +97,7 @@
 </div>
 <script>
     //JavaScript代码区域
-    layui.use('element', function() {
+    layui.use('element', function () {
         var element = layui.element;
 
     });

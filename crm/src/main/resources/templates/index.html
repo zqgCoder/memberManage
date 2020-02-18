@@ -1,91 +1,14 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Free Gym Website Template | Home</title>
-    <link th:href="@{/asserts/cus/css/bootstrap.css}"       rel="stylesheet"/>
-    <link th:href="@{/asserts/zqg/css/style.css}"           rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
-    <script th:src="@{/asserts/zqg/js/jquery.min.js}"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event){
-                event.preventDefault();
-                $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
-            });
-        });
-    </script>
-    <!-- grid-slider -->
-    <script type="text/javascript" th:src="@{/asserts/zqg/js/jquery.mousewheel.js}"></script>
-    <script type="text/javascript" th:src="@{/asserts/zqg/js/jquery.contentcarousel.js}"></script>
-    <script type="text/javascript" th:src="@{/asserts/zqg/js/jquery.easing.1.3.js}"></script>
-    <!-- //grid-slider -->
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head th:include="common/common_head::commonHeader"></head>
 <body>
-<!-- start header_top -->
-<div class="header">
-    <div class="container">
-        <div class="header-text">
-            <h1>Perfect Fitness</h1>
-            <h2>Best Choice For your site</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna</p>
-            <div class="banner_btn">
-                <a href="#">Read More</a>
-            </div>
-        </div>
-        <div class="header-arrow">
-            <a href="#menu" class="class scroll"><span> </span ></a>
-        </div>
-    </div>
-</div>
-<!-- end header_top -->
+
 <!-- start header_bottom -->
-<div class="header-bottom">
-    <div class="container">
-        <div class="header-bottom_left">
-            <i class="phone"> </i><span>1-200-346-2986</span>
-        </div>
-        <div class="social">
-            <ul>
-                <li class="facebook"><a href="#"><span> </span></a></li>
-                <li class="twitter"><a href="#"><span> </span></a></li>
-                <li class="pinterest"><a href="#"><span> </span></a></li>
-                <li class="google"><a href="#"><span> </span></a></li>
-                <li class="tumblr"><a href="#"><span> </span></a></li>
-                <li class="instagram"><a href="#"><span> </span></a></li>
-                <li class="rss"><a href="#"><span> </span></a></li>
-            </ul>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
-<!-- end header_bottom -->
+<div th:include="common/common_navigation::commonNavStart"></div>
+
 <!-- start menu -->
-<div class="menu" id="menu">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html"><img th:src="@{/asserts/zqg/images/logo.png}" alt=""/></a>
-        </div>
-        <div class="h_menu4"><!-- start h_menu4 -->
-            <a class="toggleMenu" href="#">Menu</a>
-            <ul class="nav">
-                <li class="active"><a th:href="@{/crm}">Home</a></li>
-                <li><a th:href="@{/zqg/about}">About</a></li>
-                <li><a th:href="@{/zqg/trainers}">Trainers</a></li>
-                <li><a th:href="@{/zqg/single_class}">Classes</a></li>
-                <li><a th:href="@{/zqg/blog}">Blog</a></li>
-                <li><a th:href="@{/zqg/pricing}">Pricing</a></li>
-                <li><a th:href="@{/zqg/contact}">Contact</a></li>
-                <li><a th:href="@{${session.user!=null ? '/customer/user_center' : '/user/index' }}" th:text="${session.user!=null ? '个人中心' : '登录'}" id="login_aaa">登录</a></li>
-            </ul>
-            <script type="text/javascript" th:src="@{/asserts/zqg/js/nav.js}"></script>
-        </div><!-- end h_menu4 -->
-        <div class="clear"></div>
-    </div>
-</div>
+<div th:include="common/common_navigation::commonNavigation"></div>
+
 <!-- end menu -->
 <div class="main">
     <div class="container">
@@ -95,8 +18,9 @@
                 <img th:src="@{/asserts/zqg/images/pic.png}" class="img-responsive" alt=""/>
             </div>
             <div class="col-md-7 content_left_text">
-                <h3>Lorem ipsum dolor sit!</h3>
-                <p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                <h3 th:text="#{lorem}">Lorem ipsum dolor sit!</h3>
+                <p th:text="#{fitness}">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                    lobortis nisl ut aliquip ex ea commodo consequat.</p>
             </div>
         </div>
     </div>
@@ -124,7 +48,7 @@
                     <div class="clear"></div>
                 </ul>
                 <div class="view view-fifth">
-                    <img th:src="@{/asserts/zqg/images/pic2.jpg}" class="img-responsive"  alt=""/>
+                    <img th:src="@{/asserts/zqg/images/pic2.jpg}" class="img-responsive" alt=""/>
                     <div class="mask">
                         <div class="info">Read More</div>
                     </div>
@@ -157,10 +81,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -171,10 +99,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -185,10 +117,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -199,10 +135,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -215,10 +155,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -229,10 +173,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -243,10 +191,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -257,10 +209,14 @@
                             </ul>
                             <div class="social-media">
                                 <ul>
-                                    <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a href="#" target="_blank"> </a> </span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a href="#" target="_blank"> </a></span></li>
-                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable"
+                                              data-tooltip="timetable"><a href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Send to"><a
+                                            href="#" target="_blank"> </a> </span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="like it"><a
+                                            href="#" target="_blank"> </a></span></li>
+                                    <li><span class="simptip-position-bottom simptip-movable" data-tooltip="share"><a
+                                            href="#" target="_blank"> </a></span></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -286,74 +242,84 @@
                 <h3 class="m_2">Our Trainers</h3>
                 <div class="course_demo">
                     <ul id="flexiselDemo3">
-                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}" /><div class="desc">
-                            <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
-                            <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
-                            <div class="coursel_list">
-                                <i class="heart1"> </i>
-                                <i class="like"> </i>
+                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}"/>
+                            <div class="desc">
+                                <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
+                                <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
+                                <div class="coursel_list">
+                                    <i class="heart1"> </i>
+                                    <i class="like"> </i>
+                                </div>
+                                <div class="coursel_list1">
+                                    <i class="twt"> </i>
+                                    <i class="fb"> </i>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="coursel_list1">
-                                <i class="twt"> </i>
-                                <i class="fb"> </i>
+                        </li>
+                        <li><img th:src="@{/asserts/zqg/images/pic5.jpg}"/>
+                            <div class="desc">
+                                <h3>Lorem Ipsum<br><span class="m_text">Kik Boxing</span></h3>
+                                <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
+                                <div class="coursel_list">
+                                    <i class="heart2"> </i>
+                                    <i class="like1"> </i>
+                                </div>
+                                <div class="coursel_list1">
+                                    <i class="twt"> </i>
+                                    <i class="fb"> </i>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="clear"></div>
-                        </div></li>
-                        <li><img th:src="@{/asserts/zqg/images/pic5.jpg}" /><div class="desc">
-                            <h3>Lorem Ipsum<br><span class="m_text">Kik Boxing</span></h3>
-                            <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
-                            <div class="coursel_list">
-                                <i class="heart2"> </i>
-                                <i class="like1"> </i>
+                        </li>
+                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}"/>
+                            <div class="desc">
+                                <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
+                                <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
+                                <div class="coursel_list">
+                                    <i class="heart2"> </i>
+                                    <i class="like1"> </i>
+                                </div>
+                                <div class="coursel_list1">
+                                    <i class="twt"> </i>
+                                    <i class="fb"> </i>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="coursel_list1">
-                                <i class="twt"> </i>
-                                <i class="fb"> </i>
+                        </li>
+                        <li><img th:src="@{/asserts/zqg/images/pic5.jpg}"/>
+                            <div class="desc">
+                                <h3>Lorem Ipsum<br><span class="m_text">Kik Boxing</span></h3>
+                                <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
+                                <div class="coursel_list">
+                                    <i class="heart2"> </i>
+                                    <i class="like1"> </i>
+                                </div>
+                                <div class="coursel_list1">
+                                    <i class="twt"> </i>
+                                    <i class="fb"> </i>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="clear"></div>
-                        </div></li>
-                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}" /><div class="desc">
-                            <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
-                            <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
-                            <div class="coursel_list">
-                                <i class="heart2"> </i>
-                                <i class="like1"> </i>
+                        </li>
+                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}"/>
+                            <div class="desc">
+                                <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
+                                <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
+                                <div class="coursel_list">
+                                    <i class="heart2"> </i>
+                                    <i class="like1"> </i>
+                                </div>
+                                <div class="coursel_list1">
+                                    <i class="twt"> </i>
+                                    <i class="fb"> </i>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="coursel_list1">
-                                <i class="twt"> </i>
-                                <i class="fb"> </i>
-                            </div>
-                            <div class="clear"></div>
-                        </div></li>
-                        <li><img th:src="@{/asserts/zqg/images/pic5.jpg}" /><div class="desc">
-                            <h3>Lorem Ipsum<br><span class="m_text">Kik Boxing</span></h3>
-                            <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
-                            <div class="coursel_list">
-                                <i class="heart2"> </i>
-                                <i class="like1"> </i>
-                            </div>
-                            <div class="coursel_list1">
-                                <i class="twt"> </i>
-                                <i class="fb"> </i>
-                            </div>
-                            <div class="clear"></div>
-                        </div></li>
-                        <li><img th:src="@{/asserts/zqg/images/pic4.jpg}" /><div class="desc">
-                            <h3>Lorem Ipsum<br><span class="m_text">Spinning</span></h3>
-                            <p>Lorem ipsum dolor<br> sit amet, consectetuer.</p>
-                            <div class="coursel_list">
-                                <i class="heart2"> </i>
-                                <i class="like1"> </i>
-                            </div>
-                            <div class="coursel_list1">
-                                <i class="twt"> </i>
-                                <i class="fb"> </i>
-                            </div>
-                            <div class="clear"></div>
-                        </div></li>
+                        </li>
                     </ul>
                     <script type="text/javascript">
-                        $(window).load(function() {
+                        $(window).load(function () {
                             $("#flexiselDemo3").flexisel({
                                 visibleItems: 4,
                                 animationSpeed: 1000,
@@ -363,15 +329,15 @@
                                 enableResponsiveBreakpoints: true,
                                 responsiveBreakpoints: {
                                     portrait: {
-                                        changePoint:480,
+                                        changePoint: 480,
                                         visibleItems: 1
                                     },
                                     landscape: {
-                                        changePoint:640,
+                                        changePoint: 640,
                                         visibleItems: 2
                                     },
                                     tablet: {
-                                        changePoint:768,
+                                        changePoint: 768,
                                         visibleItems: 2
                                     }
                                 }
@@ -448,94 +414,47 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="row about">
-            <div class="col-md-8">
-                <h3 class="m_2">Gallery</h3>
-                <div id="ca-container" class="ca-container">
-                    <div class="ca-wrapper">
-                        <div class="ca-item ca-item-1">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon1"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-2">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon2"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-3">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon3"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-4">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon4"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-5">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon5"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-6">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon6"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-7">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon7"> </div>
-                            </div>
-                        </div>
-                        <div class="ca-item ca-item-8">
-                            <div class="ca-item-main">
-                                <div class="ca-icon"> </div>
-                                <div class="ca-icon"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $('#ca-container').contentcarousel();
-                </script>
-            </div>
-            <div class="col-md-4">
-                <h3 class="m_2">Partner</h3>
-                <ul class="partner">
-                    <li><img th:src="@{/asserts/zqg/images/p6.png}" alt=""/></li>
-                    <li><img th:src="@{/asserts/zqg/images/p5.png}" alt=""/></li>
-                    <li><img th:src="@{/asserts/zqg/images/p4.png}" alt=""/></li>
-                    <li><img th:src="@{/asserts/zqg/images/p3.png}" alt=""/></li>
-                    <li><img th:src="@{/asserts/zqg/images/p2.png}" alt=""/></li>
-                    <li><img th:src="@{/asserts/zqg/images/p1.png}" alt=""/></li>
-                    <div class="clear"></div>
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>
+
+        <div th:include="common/common_parter::gallary"></div>
     </div>
 </div>
 <div class="map">
-    <br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=United+Kingdom&amp;aq=0&amp;oq=un&amp;sll=37.0625,-95.677068&amp;sspn=48.956293,107.138672&amp;ie=UTF8&amp;hq=&amp;hnear=United+Kingdom&amp;ll=55.378051,-3.435973&amp;spn=135.795411,68.554687&amp;t=m&amp;z=2" style="color:#666;font-size:12px;text-align:left"> </a></small>
+    <br/><small><a
+        href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=United+Kingdom&amp;aq=0&amp;oq=un&amp;sll=37.0625,-95.677068&amp;sspn=48.956293,107.138672&amp;ie=UTF8&amp;hq=&amp;hnear=United+Kingdom&amp;ll=55.378051,-3.435973&amp;spn=135.795411,68.554687&amp;t=m&amp;z=2"
+        style="color:#666;font-size:12px;text-align:left"> </a></small>
     <div class="opening_hours">
         <ul class="times">
             <h3>Opening <span class="opening">Hours</span></h3>
-            <li><i class="calender"> </i><span class="week">Monday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Tuesday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Wednesday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Thrusday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Friday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Saturday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <li><i class="calender"> </i><span class="week">Sunday</span><div class="hours">h.6:00-h.24:00</div>  <div class="clear"></div></li>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet</p>
+            <li><i class="calender"> </i><span class="week">Monday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Tuesday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Wednesday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Thrusday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Friday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Saturday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <li><i class="calender"> </i><span class="week">Sunday</span>
+                <div class="hours">h.6:00-h.24:00</div>
+                <div class="clear"></div>
+            </li>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                laoreet</p>
             <h4>Enjoy it!</h4>
         </ul>
     </div>
@@ -543,70 +462,16 @@
 <div class="footer-top">
     <ul class="twitter_footer">
         <li>
-            <i class="twt_icon"> </i><p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel  <span class="m_6">2 days ago</span></p>
+            <i class="twt_icon"> </i>
+            <p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel <span class="m_6">2 days ago</span></p>
             <div class="clear"></div>
         </li>
     </ul>
 </div>
-<div class="footer-bottom">
-    <div class="container">
-        <div class="row section group">
-            <div class="col-md-4">
-                <h4 class="m_7">Newsletter Signup</h4>
-                <p class="m_8">Lorem ipsum dolor sit amet, consectetuer adipiscing elit sed diam nonummy.</p>
-                <form class="subscribe">
-                    <input type="text" value="Insert Email" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Insert Email';}">
-                </form>
-                <div class="subscribe1">
-                    <a href="#">Submit Email<i class="but_arrow"> </i></a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="f-logo">
-                    <img th:src="@{/asserts/zqg/images/logo.png}" alt=""/>
-                </div>
-                <p class="m_9">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis</p>
-                <p class="address">Phone : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="m_10">(00) 222 666 444</span></p>
-                <p class="address">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="m_10">info[at]mycompany.com</span></p>
-            </div>
-            <div class="col-md-4">
-                <ul class="list">
-                    <h4 class="m_7">Menu</h4>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Trainers</a></li>
-                    <li><a href="#">Classes</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#"> Login</a></li>
-                </ul>
-                <ul class="list1">
-                    <h4 class="m_7">Community</h4>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Forum</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Newsletter</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
-</div>
-<div class="copyright">
-    <div class="container">
-        <div class="social">
-            <ul>
-                <li class="facebook"><a href="#"><span> </span></a></li>
-                <li class="twitter"><a href="#"><span> </span></a></li>
-                <li class="pinterest"><a href="#"><span> </span></a></li>
-                <li class="google"><a href="#"><span> </span></a></li>
-                <li class="tumblr"><a href="#"><span> </span></a></li>
-                <li class="instagram"><a href="#"><span> </span></a></li>
-                <li class="rss"><a href="#"><span> </span></a></li>
-            </ul>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
+
+<div th:include="common/common_footer::footerBottom"></div>
+<!-- common copyright -->
+<div th:include="common/common_footer::copyright"></div>
 </body>
 </html>

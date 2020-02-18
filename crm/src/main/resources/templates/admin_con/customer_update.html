@@ -20,19 +20,22 @@
     <div class="layui-form-item" hidden="hidden">
         <label class="layui-form-label">消费编号</label>
         <div class="layui-input-block">
-            <input type="text" required name="id" id="id" autocomplete="off" class="layui-input" th:value="${customer.getId()}">
+            <input type="text" required name="id" id="id" autocomplete="off" class="layui-input"
+                   th:value="${customer.getId()}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户编号</label>
         <div class="layui-input-block">
-            <input type="text" required name="userid" id="userid" autocomplete="off" placeholder="请输入用户编号" class="layui-input" th:value="${customer.getUserid()}">
+            <input type="text" required name="userid" id="userid" autocomplete="off" placeholder="请输入用户编号"
+                   class="layui-input" th:value="${customer.getUserid()}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">课程编号</label>
         <div class="layui-input-block">
-            <input type="text" required name="courseid" id="courseid" autocomplete="off" placeholder="请输入课程编号" class="layui-input" th:value="${customer.getCourseid()}">
+            <input type="text" required name="courseid" id="courseid" autocomplete="off" placeholder="请输入课程编号"
+                   class="layui-input" th:value="${customer.getCourseid()}">
         </div>
     </div>
     <div class="layui-form-item">
@@ -44,7 +47,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">花费金额</label>
         <div class="layui-input-block">
-            <input type="text" required name="money" id="money" autocomplete="off" placeholder="请输入课程价格" class="layui-input" th:value="${customer.getMoney()}">
+            <input type="text" required name="money" id="money" autocomplete="off" placeholder="请输入课程价格"
+                   class="layui-input" th:value="${customer.getMoney()}">
         </div>
     </div>
     <div class="layui-form-item">
@@ -56,7 +60,7 @@
 </form>
 
 <script>
-    layui.use(['form', 'layedit', 'laydate','upload'], function(){
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
         var form = layui.form,
             layer = layui.layer,
             layedit = layui.layedit,
@@ -67,65 +71,71 @@
         var editIndex = layedit.build('LAY_demo_editor');
         form.render();
         laydate.render({
-            elem : '#time1'
+            elem: '#time1'
         });
 
     });
 
     function update_customer() {
         var id = $("#id").val();
-        var userid =$("#userid").val();
+        var userid = $("#userid").val();
         var courseid = $("#courseid").val();
         var time = $("#time1").val();
         var money = $("#money").val();
         var parn = /^\d{5,8}$/;
         var parnm = /^[0-9]+(.[0-9]{0,2})?$/;
-        if(userid == ""){
-            layer.alert('用户编号不能为空',{
-                icon :5,
-                title :"提示"
+        if (userid == "") {
+            layer.alert('用户编号不能为空', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(courseid == ""){
-            layer.alert('课程编号不能为空',{
-                icon :5,
-                title :"提示"
+        } else if (courseid == "") {
+            layer.alert('课程编号不能为空', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(!parn.exec(courseid)){
-            layer.alert('课程编号不符合规则',{
-                icon :5,
-                title :"提示"
+        } else if (!parn.exec(courseid)) {
+            layer.alert('课程编号不符合规则', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(time == ""){
-            layer.alert('请选择时间',{
-                icon :5,
-                title :"提示"
+        } else if (time == "") {
+            layer.alert('请选择时间', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(money == ""){
-            layer.alert('课程价格不能为空',{
-                icon :5,
-                title :"提示"
+        } else if (money == "") {
+            layer.alert('课程价格不能为空', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(!parnm.exec(money)){
-            layer.alert('课程价格不符合规则',{
-                icon :5,
-                title :"提示"
+        } else if (!parnm.exec(money)) {
+            layer.alert('课程价格不符合规则', {
+                icon: 5,
+                title: "提示"
             });
             return;
         }
 
-        $.post("/crm/myAdmin/customer_update", {id:id, userid:userid, courseid : courseid,time: time, money:money}, function(data) {
-            if(data == 1){
+        $.post("/crm/myAdmin/customer_update", {
+            id: id,
+            userid: userid,
+            courseid: courseid,
+            time: time,
+            money: money
+        }, function (data) {
+            if (data == 1) {
                 layer.msg("修改成功");
-            } else if(data == 3){
-                layer.msg("用户不存在，请重新填写" );
+            } else if (data == 3) {
+                layer.msg("用户不存在，请重新填写");
                 $("#uesrid").val("").focus();
-            } else{
-                layer.msg("网络异常，请稍后再试" );
+            } else {
+                layer.msg("网络异常，请稍后再试");
             }
         })
     }

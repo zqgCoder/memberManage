@@ -15,9 +15,9 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /*
-* 本页面主要用来作为用户的一些个人信息和消费记录的增删改查功能。
-* 与UserController结合使用，可以完成用户的全部与数据库有关的行为。
-* */
+ * 本页面主要用来作为用户的一些个人信息和消费记录的增删改查功能。
+ * 与UserController结合使用，可以完成用户的全部与数据库有关的行为。
+ * */
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -37,18 +37,18 @@ public class CustomerController {
     public String user_consume(Model model, HttpSession session, Integer pageNow, Long courseid) {
         System.out.println("进入到controller包下的CustomerController类中的 user_consume（）方法---------->");
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         Page<Customer> page = null;
         QueryWrapper<Customer> wrapper = new QueryWrapper<>();
 
-        wrapper.eq("userid", user.getId());
+        wrapper.eq("username", user.getUsername());
 
-        if(courseid != null) {
+        if (courseid != null) {
             wrapper.eq("courseid", courseid);
         }
-        page = customerService.page(new Page<>(pageNow != null ? pageNow : 1,3),wrapper);
-        model.addAttribute("page" , page);
+        page = customerService.page(new Page<>(pageNow != null ? pageNow : 1, 3), wrapper);
+        model.addAttribute("page", page);
         model.addAttribute("courseid", courseid);
         return "user_con/user_list";
     }

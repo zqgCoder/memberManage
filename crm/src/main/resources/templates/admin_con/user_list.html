@@ -3,12 +3,12 @@
 <head>
     <title>用户列表</title>
     <!-- jQuery -->
-    <script th:src="@{/asserts/cus/js/jquery-3.3.1.min.js}"             type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/jquery-3.3.1.min.js}" type="text/javascript"></script>
     <!-- 引入Bootstrap样式 -->
     <link rel="stylesheet" th:href="@{/asserts/cus/css/bootstrap.min.css}">
     <!-- 引入Bootstrap-table样式 -->
-    <script th:src="@{/asserts/cus/js/jquery.dataTables.min.js}"        type="text/javascript"></script>
-    <script th:src="@{/asserts/cus/js/jquery.dataTables.bootstrap.js}"  type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/jquery.dataTables.min.js}" type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/jquery.dataTables.bootstrap.js}" type="text/javascript"></script>
 
     <link rel="stylesheet" th:href="@{/asserts/cus/css/sweetalert.css}">
     <link rel="stylesheet" th:href="@{/asserts/cus/css/bootstrap-table.min.css}">
@@ -16,8 +16,8 @@
     <script th:src="@{/asserts/cus/js/bootstrap-table.min.js}"></script>
 
     <!-- 引入弹框-->
-    <script th:src="@{/asserts/cus/js/sweetalert.min.js}"  	type="text/javascript"></script>
-    <script th:src="@{/asserts/cus/js/sweetalert-dev.js}"  	type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/sweetalert.min.js}" type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/sweetalert-dev.js}" type="text/javascript"></script>
 </head>
 <style>
     .data_table th > div {
@@ -34,12 +34,15 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">用户列表</a>
                 </div>
-                <form class="navbar-form navbar-left" role="search" th:action="@{/myAdmin/user_list(birthday=${birthday},gender=${gender})}" method="get">
+                <form class="navbar-form navbar-left" role="search"
+                      th:action="@{/myAdmin/user_list(birthday=${birthday},gender=${gender})}" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control search_name" id="search_birthday" placeholder="搜索用户生日" name="birthday" th:value="${birthday}">
+                        <input type="text" class="form-control search_name" id="search_birthday" placeholder="搜索用户生日"
+                               name="birthday" th:value="${birthday}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control search_courseid" id="search_gender" placeholder="搜索性别" name="gender" th:value="${gender}">
+                        <input type="text" class="form-control search_courseid" id="search_gender" placeholder="搜索性别"
+                               name="gender" th:value="${gender}">
                     </div>
                     <button type="submit" class="btn btn-success btn-search">搜索</button>
                     <button type="button" class="btn btn-info btn-add" onclick="add()">添加顾客</button>
@@ -55,20 +58,21 @@
         <tr>
             <th data-checkbox="true"></th>
             <th data-field="id" data-sortable="true">用户ID</th>
-            <th data-field="userid" data-sortable="true">用户名</th>
-
-            <th data-field="courseid" data-sortable="true">性别</th>
-            <th data-field="time" style="text-align: center">出生日期</th>
+            <th data-field="username" data-sortable="true">用户名</th>
+            <th data-field="gender" data-sortable="true">性别</th>
+            <th data-field="birthday" style="text-align: center">出生日期</th>
+            <th data-field="statement" style="text-align: center">个人说明</th>
             <th data-field="optional" style="text-align: center">操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="c,status : ${page.getRecords()}">
+        <tr th:each="c,status : ${page.getRecords()}" style="text-align: center">
             <td data-checkbox="true"></td>
             <td th:text="${c.id}">用户ID</td>
             <td th:text="${c.username}">用户名</td>
             <td th:text="${c.gender}">性别</td>
             <td th:text="${c.birthday}">出生日期</td>
+            <td th:text="${c.statement}">个人说明</td>
             <td>
                 <button type="button" class="btn btn-primary btn-sm" onclick="updateRow(this)">修改</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteRow(this)">删除</button>
@@ -102,7 +106,7 @@
     function updateRow(obj) {
         var row = $(obj).closest("tr");
         var value = row.find("td:eq(1)").text();
-        window.location.href = "/crm/myAdmin/to_user_update?id="+ value;
+        window.location.href = "/crm/myAdmin/to_user_update?id=" + value;
     }
 
     //删除用户
@@ -114,24 +118,27 @@
                 text: "您确定要删除这条数据？",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonColor:"#DD6B55",
-                confirmButtonText:"确定删除！",
-                cancelButtonText:"取消",
-                closeOnConfirm:false,
-                closeOnCancel:false
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定删除！",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: false
             },
-            function(isConfirm)
-            {
-                if(isConfirm)
-                {
-                    swal({title:"操作成功！",
-                        text:"您已经成功删除了这条数据。",
-                        type:"success"},function(){window.location="/crm/myAdmin/del_user?id="+value})
-                }
-                else{
-                    swal({title:"已取消",
-                        text:"您取消了删除操作！",
-                        type:"error"})
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "操作成功！",
+                        text: "您已经成功删除了这条数据。",
+                        type: "success"
+                    }, function () {
+                        window.location = "/crm/myAdmin/del_user?id=" + value
+                    })
+                } else {
+                    swal({
+                        title: "已取消",
+                        text: "您取消了删除操作！",
+                        type: "error"
+                    })
                 }
 
             }
@@ -145,12 +152,12 @@
     }
 
     //分页 + 查找
-    function go(pageNow, birthday,gender) {
+    function go(pageNow, birthday, gender) {
         var nextPage = "/crm/myAdmin/user_list?pageNow=" + pageNow;
         if (birthday != null) {
             nextPage += "&birthday=" + birthday;
         }
-        if(gender != null) {
+        if (gender != null) {
             nextPage += "&gender" + gender;
         }
         window.location = nextPage;

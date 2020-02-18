@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="commonNavigation">
+    <div class="menu">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html"><img th:src="@{/asserts/zqg/images/logo.png}" alt=""/></a>
+        </div>
+        <div class="h_menu4"><!-- start h_menu4 -->
+            <a class="toggleMenu" href="#">Menu</a>
+            <ul class="nav">
+                <li class="active"><a th:href="@{/}" th:text="#{home}">Home</a></li>
+                <li><a th:href="@{/about}" th:text="#{about}">About</a></li>
+                <li><a th:href="@{/trainers}" th:text="#{trainers}">Trainers</a></li>
+                <li><a th:href="@{/single_class}" th:text="#{classes}">Classes</a></li>
+                <li><a th:href="@{/blog}" th:text="#{blog}">Blog</a></li>
+                <li><a th:href="@{/pricing}" th:text="#{price}">Pricing</a></li>
+                <li><a th:href="@{/contact}" th:text="#{contact}">Contact</a></li>
+                <li><a th:href="@{${session.user!=null ? '/customer/user_center' : '/user/index' }}"
+                       th:text="${session.user!=null ? '个人中心' : '登录'}" id="login_aaa">登录</a></li>
+                <li>
+                    <select name="interest" id="interest" style="color: #00AEFF">
+                        <option value="" th:text="#{user.langOpt}">选择语言</option>
+                        <option value="lang=zh_CN" th:text="#{user.chinese}">中文</option>
+                        <option value="lang=en_US" th:text="#{user.english}">英语</option>
+                    </select>
+                </li>
+            </ul>
+            <script type="text/javascript">
+                $("#interest").change(function () {
+                    var s = $("#interest option:selected").val();
+                    if (s == "lang=zh_CN") {
+                        $.get("/crm", {lang: "zh_CN"}, function (data) {
+                            location.reload();
+                        });
+                    } else {
+                        $.get("/crm", {lang: "en_US"}, function (data) {
+                            location.reload();
+                        });
+                    }
+                })
+
+            </script>
+            <script type="text/javascript" th:src="@{/asserts/zqg/js/nav.js}"></script>
+        </div><!-- end h_menu4 -->
+        <div class="clear"></div>
+    </div>
+    </div>
+</div>
+
+<div th:fragment="commonNavStart">
+    <!-- start header_bottom -->
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-bottom_left">
+                <i class="phone"> </i><span>1-234-567-8901</span>
+            </div>
+            <div class="social">
+                <ul>
+                    <li class="facebook"><a href="#"><span> </span></a></li>
+                    <li class="twitter"><a href="#"><span> </span></a></li>
+                    <li class="pinterest"><a href="#"><span> </span></a></li>
+                    <li class="google"><a href="#"><span> </span></a></li>
+                    <li class="tumblr"><a href="#"><span> </span></a></li>
+                    <li class="instagram"><a href="#"><span> </span></a></li>
+                    <li class="rss"><a href="#"><span> </span></a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

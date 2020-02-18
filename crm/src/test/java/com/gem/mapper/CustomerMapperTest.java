@@ -33,9 +33,9 @@ class CustomerMapperTest {
     }
 
     @Test
-    public void selectAll(){
+    public void selectAll() {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id" , 2);
+        queryWrapper.eq("id", 2);
         List<Customer> customers = customerMapper.selectList(queryWrapper);
         System.out.println("-------------------");
         customers.forEach(System.out::println);

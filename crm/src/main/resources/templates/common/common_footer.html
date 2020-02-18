@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="copyright">
+    <div class="copyright">
+        <div class="container">
+            <div class="social">
+                <ul>
+                    <li class="facebook"><a href="#"><span> </span></a></li>
+                    <li class="twitter"><a href="#"><span> </span></a></li>
+                    <li class="pinterest"><a href="#"><span> </span></a></li>
+                    <li class="google"><a href="#"><span> </span></a></li>
+                    <li class="tumblr"><a href="#"><span> </span></a></li>
+                    <li class="instagram"><a href="#"><span> </span></a></li>
+                    <li class="rss"><a href="#"><span> </span></a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="footerBottom">
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row section group">
+                <div class="col-md-4">
+                    <h4 class="m_7">Newsletter Signup</h4>
+                    <p class="m_8">Lorem ipsum dolor sit amet, consectetuer adipiscing elit sed diam nonummy.</p>
+                    <form class="subscribe">
+                        <input type="text" value="Insert Email" onFocus="this.value = '';"
+                               onBlur="if (this.value == '') {this.value = 'Insert Email';}">
+                    </form>
+                    <div class="subscribe1">
+                        <a href="#" th:text="#{submitEmail}">Submit Email<i class="but_arrow"> </i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="f-logo">
+                        <img th:src="@{/asserts/zqg/images/logo.png}" alt=""/>
+                    </div>
+                    <p class="m_9">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis</p>
+                    <p class="address">Phone : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="m_10">(00) 222 666 444</span></p>
+                    <p class="address">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="m_10">info[at]mycompany.com</span>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list">
+                        <h4 class="m_7">Menu</h4>
+                        <li><a th:href="@{/contact}" >Contact</a></li>
+                        <li><a href="#" th:text="#{about}">About</a></li>
+                        <li><a href="#" th:text="#{trainers}">Trainers</a></li>
+                        <li><a href="#" th:text="#{classes}">Classes</a></li>
+                        <li><a href="#" th:text="#{price}">Pricing</a></li>
+                        <li><a href="#" th:text="#{contact}">Contact</a></li>
+                    </ul>
+                    <ul class="list1">
+                        <h4 class="m_7">Community</h4>
+                        <li><a href="#" th:text="#{blog}">Blog</a></li>
+                        <li><a href="#" th:text="#{forum}">Forum</a></li>
+                        <li><a href="#" th:text="#{support}">Support</a></li>
+                        <li><a href="#" th:text="#{newsletter}">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

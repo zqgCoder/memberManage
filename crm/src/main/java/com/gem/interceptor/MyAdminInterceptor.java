@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class MyAdminInterceptor implements HandlerInterceptor  {
+public class MyAdminInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -16,8 +16,8 @@ public class MyAdminInterceptor implements HandlerInterceptor  {
         //System.out.println(">>>MyAdminInterceptor>>>>>>>在请求处理之前进行调用（Controller方法调用之前）");
         //判断是否为管理员登录
         HttpSession session = request.getSession();
-        Admin admin = (Admin)session.getAttribute("admin");
-        String role = (String)session.getAttribute("role");
+        Admin admin = (Admin) session.getAttribute("admin");
+        String role = (String) session.getAttribute("role");
 
         if (admin != null && role == "administrator") {
             //System.out.println(admin.toString() + "------------" + role);

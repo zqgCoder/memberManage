@@ -19,11 +19,11 @@ public class WebAppConfig implements WebMvcConfigurer {
         //本拦截器用来实现对管理员的拦截
         registry.addInterceptor(new MyAdminInterceptor())
                 .addPathPatterns("/myAdmin/**")
-                .excludePathPatterns("/","/login.html","/cus/**","/customer/**","/myAdmin/login","/myAdmin/check");
+                .excludePathPatterns("/", "/login.html", "/cus/**", "/customer/**", "/myAdmin/login", "/myAdmin/check", "/course/**");
 
         //用户拦截器
         registry.addInterceptor(new MyCustomerInterceptor())
                 .addPathPatterns("/customer/**")
-                .excludePathPatterns("/","/login.html","/cus/**","/myAdmin/**");
+                .excludePathPatterns("/", "/login.html", "/cus/**", "/myAdmin/**");
     }
 }

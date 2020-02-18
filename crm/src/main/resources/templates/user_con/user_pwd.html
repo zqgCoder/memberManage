@@ -10,9 +10,9 @@
 
     <script th:src="@{/asserts/cus/js/jquery-3.3.1.min.js}" type="text/javascript"></script>
 
-    <script th:src="@{/asserts/cus/js/sweetalert.min.js}"  	type="text/javascript"></script>
-    <script th:src="@{/asserts/cus/js/sweetalert-dev.js}"  	type="text/javascript"></script>
-    <script th:src="@{/asserts/cus/js/md5.js}"  			type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/sweetalert.min.js}" type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/sweetalert-dev.js}" type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/md5.js}" type="text/javascript"></script>
     <link rel="stylesheet" th:href="@{/asserts/cus/css/sweetalert.css}">
 </head>
 <body>
@@ -27,25 +27,29 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">当前密码</label>
                             <div class="layui-input-inline">
-                                <input type="password" name="oldPassword" id="oldPassword" lay-verify="required" lay-verType="tips" class="layui-input">
+                                <input type="password" name="oldPassword" id="oldPassword" lay-verify="required"
+                                       lay-verType="tips" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">新密码</label>
                             <div class="layui-input-inline">
-                                <input type="password" name="password" lay-verify="pass" lay-verType="tips" autocomplete="off" id="newPwd" class="layui-input">
+                                <input type="password" name="password" lay-verify="pass" lay-verType="tips"
+                                       autocomplete="off" id="newPwd" class="layui-input">
                             </div>
                             <div class="layui-form-mid layui-word-aux">6到16个字符</div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">确认新密码</label>
                             <div class="layui-input-inline">
-                                <input type="password" name="repassword" id="newPwd2" lay-verify="repass" lay-verType="tips" autocomplete="off" class="layui-input">
+                                <input type="password" name="repassword" id="newPwd2" lay-verify="repass"
+                                       lay-verType="tips" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="setmypass" onclick="update()">确认修改</button>
+                                <button class="layui-btn" lay-submit lay-filter="setmypass" onclick="update()">确认修改
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -64,36 +68,44 @@
         var np1 = $("#newPwd").val();
         var np2 = $("#newPwd2").val();
         var patrn = /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/;
-        if(pwd == ""){
-            swal({title:"提示",
-                text:"原密码不能为空！",
-                type:"warning"});
+        if (pwd == "") {
+            swal({
+                title: "提示",
+                text: "原密码不能为空！",
+                type: "warning"
+            });
             return;
-        } else if(np1 == "" || np2 == ""){
-            swal({title:"提示",
-                text:"新密码不能为空！",
-                type:"warning"});
+        } else if (np1 == "" || np2 == "") {
+            swal({
+                title: "提示",
+                text: "新密码不能为空！",
+                type: "warning"
+            });
             return;
-        } else if(np1 != np2) {
-            swal({title:"提示",
-                text:"两次密码不一致！",
-                type:"warning"});
+        } else if (np1 != np2) {
+            swal({
+                title: "提示",
+                text: "两次密码不一致！",
+                type: "warning"
+            });
             return;
-        } else if(!patrn.exec(np1)){
-            swal({title:"提示",
-                text:"新密码不符合规范！",
-                type:"warning"});
+        } else if (!patrn.exec(np1)) {
+            swal({
+                title: "提示",
+                text: "新密码不符合规范！",
+                type: "warning"
+            });
             return;
-        } else{
+        } else {
             pwd1 = md5(pwd);
             pwd2 = md5(np1);
             $.post("/crm/user/update_password", {pwd1: pwd1, pwd2: pwd2}, function (data) {
                 if (data == 0) {
-                    swal({title:"修改失败", text:"密码修改失败",type:"error",timer:2000});
+                    swal({title: "修改失败", text: "密码修改失败", type: "error", timer: 2000});
                     $("#oldPassword").val("").focus();
                     $("#newPwd").val("");
                     $("#newPwd2").val("");
-                }  else if(data == 1) {
+                } else if (data == 1) {
                     swal("修改成功", "恭喜您，已经成功修改了密码", "success");
 
                 }

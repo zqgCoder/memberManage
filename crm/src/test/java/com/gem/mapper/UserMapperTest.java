@@ -47,9 +47,9 @@ class UserMapperTest {
     }
 
     @Test
-    public void selectAll(){
+    public void selectAll() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("username","adm");
+        queryWrapper.like("username", "adm");
         List<User> users = userMapper.selectList(queryWrapper);
         System.out.println("-------------------");
         users.forEach(System.out::println);

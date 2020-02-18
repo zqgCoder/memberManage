@@ -14,14 +14,15 @@
 
     <script th:src="@{/asserts/cus/js/jquery-3.3.1.min.js}" type="text/javascript"></script>
 
-    <script th:src="@{/asserts/cus/js/md5.js}"  			type="text/javascript"></script>
+    <script th:src="@{/asserts/cus/js/md5.js}" type="text/javascript"></script>
 </head>
 <body>
 <form class="layui-form">
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" required name="username" id="username" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+            <input type="text" required name="username" id="username" autocomplete="off" placeholder="请输入姓名"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -36,38 +37,24 @@
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-inline">
-            <input type="password" name="password" id="pwd1" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="password" id="pwd1" required lay-verify="required" placeholder="请输入密码"
+                   autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">请不要随意告知他人</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">确认密码</label>
         <div class="layui-input-inline">
-            <input type="password" name="password2" id="pwd2" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="password2" id="pwd2" required lay-verify="required" placeholder="请再次输入密码"
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">出生日期</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="time1" required>
+            <input type="text" class="layui-input" id="time1" required autocomplete="off">
         </div>
     </div>
-    <!--
-    头像区域
-    <div class="layui-form-item layui-upload">
-        <label class="layui-form-label">头像</label>
-        <div class="layui-input-inline">
-            <div class="layui-upload-list">
-
-                <img class="layui-upload-img" src="" id="demo1">
-                <p id="demoText"></p>
-            </div>
-        </div>
-        <div class="layui-input-inline layui-btn-container" style="width: auto;">
-            <button type="button" class="layui-btn" id="upload_btn">上传图片</button>
-        </div>
-    </div>
-    -->
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" type="button" onclick="add_user()">添加</button>
@@ -77,7 +64,7 @@
 </form>
 
 <script>
-    layui.use(['form', 'layedit', 'laydate','upload'], function(){
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
         var form = layui.form,
             layer = layui.layer,
             layedit = layui.layedit,
@@ -88,24 +75,23 @@
         var editIndex = layedit.build('LAY_demo_editor');
         form.render();
         laydate.render({
-            elem : '#time1'
+            elem: '#time1'
         });
 
         //上传
         var uploadInst = upload.render({
             elem: '#upload_btn'      //绑定元素
             , url: '/crm/user/upload'   //上传接口
-            , method : 'post'
-            ,before: function (obj) {
+            , method: 'post'
+            , before: function (obj) {
                 obj.preview(function (index, file, result) {
                     $("#demo1").attr('src', result);
                 });
             }
-            ,done: function(res) {
-                if(res.code > 0) {
+            , done: function (res) {
+                if (res.code > 0) {
                     return layer.msg("上传成功");
-                }
-                else{
+                } else {
                     return layer.msg("上传成功");
                 }
             }
@@ -114,7 +100,7 @@
     });
 
     function add_user() {
-        var username =$("#username").val();
+        var username = $("#username").val();
         var gender = $("#gender").val();
         var pwd1 = $("#pwd1").val();
         var pwd2 = $("#pwd2").val();
@@ -122,75 +108,76 @@
 
         var patr = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
         var patrn = /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/;
-        if(username == null || username ==""){
-            layer.alert('用户名不能为空',{
-                icon :5,
-                title :"提示"
+        if (username == null || username == "") {
+            layer.alert('用户名不能为空', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        }  else if(!patr.exec(username)){
-            layer.alert('用户名太简单了，或者不符合规范',{
-                icon :5,
-                title :"提示"
+        } else if (!patr.exec(username)) {
+            layer.alert('用户名太简单了，或者不符合规范', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(pwd1 == "" || pwd2 == "") {
-            layer.alert('密码不能为空',{
-                icon :5,
-                title :"提示"
+        } else if (pwd1 == "" || pwd2 == "") {
+            layer.alert('密码不能为空', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(!patrn.exec(pwd1)){
-            layer.alert('密码太简单了，或者不符合规范',{
-                icon :5,
-                title :"提示"
+        } else if (!patrn.exec(pwd1)) {
+            layer.alert('密码太简单了，或者不符合规范', {
+                icon: 5,
+                title: "提示"
             });
             return;
-        } else if(pwd1 != pwd2) {
-            layer.alert('两次密码不一致',{
-                icon :5,
-                title :"提示"
+        } else if (pwd1 != pwd2) {
+            layer.alert('两次密码不一致', {
+                icon: 5,
+                title: "提示"
             });
             return;
         } else {
             upd = md5(pwd1);
             $.post("/crm/myAdmin/user_add",
-                {username : username,password : upd,gender : gender,birthday :time},function (data) {
-                    if(data == 1){
-                        layer.alert("添加成功" , {
-                            skin : 'layui-layer-molv'
-                            ,icon :1
-                            ,closeBtn: 0
-                            ,title :'提示'
+                {username: username, password: upd, gender: gender, birthday: time}, function (data) {
+                    if (data == 1) {
+                        layer.alert("添加成功", {
+                            skin: 'layui-layer-molv'
+                            , icon: 1
+                            , closeBtn: 0
+                            , title: '提示'
                         })
                         window.location.href = "/crm/myAdmin/user_list";
-                    } else if(data == 3) {
+                    } else if (data == 3) {
                         //添加失败,用户名存在
-                        layer.alert('用户名已经存在，请重新填写',{
-                            icon :2
-                            ,closeBtn: 0
-                            ,title :'提示'
+                        layer.alert('用户名已经存在，请重新填写', {
+                            icon: 2
+                            , closeBtn: 0
+                            , title: '提示'
                         })
                         $("#username").val("").focus();
                     } else {
                         //添加失败
-                        layer.alert('由于网络原因，添加失败，请稍后重试',{
-                            icon :2
-                            ,closeBtn: 0
-                            ,title : "提示"
+                        layer.alert('由于网络原因，添加失败，请稍后重试', {
+                            icon: 2
+                            , closeBtn: 0
+                            , title: "提示"
                         })
                         window.location.reload();
                     }
                 }
             )
-        };
-        $.post("/crm/myAdmin/user_add", {username:username, gender : gender,birthday : time}, function(data) {
-            if(data == 1){
+        }
+        ;
+        $.post("/crm/myAdmin/user_add", {username: username, gender: gender, birthday: time}, function (data) {
+            if (data == 1) {
                 layer.msg("修改成功");
-            } else if(data == 3){
-                layer.msg("用户名已存在，请重新填写" );
-            } else{
-                layer.msg("网络异常，请稍后再试" );
+            } else if (data == 3) {
+                layer.msg("用户名已存在，请重新填写");
+            } else {
+                layer.msg("网络异常，请稍后再试");
             }
         })
     }

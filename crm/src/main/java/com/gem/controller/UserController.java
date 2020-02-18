@@ -1,8 +1,9 @@
 package com.gem.controller;
+
 import java.io.*;
 
 import java.math.BigInteger;
-import	java.security.MessageDigest;
+import java.security.MessageDigest;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /*
-* 本页面主要用来作为用户的登录注册的控制器
-* */
+ * 本页面主要用来作为用户的登录注册的控制器
+ * */
 @Controller
 @RequestMapping("/user")
 
@@ -57,13 +58,13 @@ public class UserController {
     @PostMapping("/register")
     @ResponseBody
     public String register(User user) {
-        if (check(user.getUsername()) == "1"){
+        if (check(user.getUsername()) == "1") {
             System.out.println("用户登陆成功");
             return "3";
         }
         //开始注册
         boolean bool = userService.save(user);
-        System.out.println("注册成功，用户信息---------->"+user.toString());
+        System.out.println("注册成功，用户信息---------->" + user.toString());
         if (bool) {
             return "1"; //注册成功
         } else {
@@ -80,8 +81,6 @@ public class UserController {
         if (user != null) {
             //把登录成功的用户添加到session
             session.setAttribute("user", user);
-            //设置用户的角色
-            session.setAttribute("role","customer");
             System.out.println("找到了用户");
             return "1";
         } else {
@@ -89,12 +88,13 @@ public class UserController {
         }
     }
 
+
     @GetMapping("/logout")
-    public String logout(HttpSession session, Integer id){
+    public String logout(HttpSession session, Integer id) {
         System.out.println("进入到controller包下的UserController类中的 logout（）方法---------->");
         //销毁用户
-        String role = (String)session.getAttribute("role");
-        if(role == "customer") {
+        String role = (String) session.getAttribute("role");
+        if (role == "customer") {
             System.out.println("用户退出成功,用户的ID为：" + id);
             session.invalidate();
         }
@@ -123,22 +123,22 @@ public class UserController {
     public String update(HttpSession session, String username, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthday, String gender) {
         User user = (User) session.getAttribute("user");
         //判断是不是同一个用户
-        if(user.getUsername().equals(username)){
+        if (user.getUsername().equals(username)) {
             System.out.println("是同一个用户");
             user.setBirthday(birthday);
             user.setGender(gender);
             boolean bool = userService.updateById(user);
-            if(bool) {
+            if (bool) {
                 return "1";
             }
-            return "0" ;
+            return "0";
         }
         System.out.println("不是同一个用户");
 
         QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username",username);
+        queryWrapper.eq("username", username);
         User user2 = userService.getOne(queryWrapper);
-        if(user2 != null){
+        if (user2 != null) {
             System.out.println("用户名一样了，失败");
             return "3";     //用户名相同
         } else {
@@ -160,7 +160,7 @@ public class UserController {
         return "user_con/user_update";
     }
 
-    @GetMapping("/update_pwd" )
+    @GetMapping("/update_pwd")
     public String update_pwd() {
         return "user_con/user_pwd";
     }
@@ -168,16 +168,16 @@ public class UserController {
     //修改用户密码
     @PostMapping("/update_password")
     @ResponseBody
-    public String update_password(HttpSession session,@RequestParam String pwd1,@RequestParam String pwd2){
+    public String update_password(HttpSession session, @RequestParam String pwd1, @RequestParam String pwd2) {
         System.out.println("进入到controller包下的UserController类中的 update_password（）方法---------->");
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         System.out.println(user.getPassword() + "------------" + pwd1 + "--------------" + pwd2);
-        if(pwd2 == "" || pwd2 == null)return "0";
+        if (pwd2 == "" || pwd2 == null) return "0";
         user.setPassword(pwd2);
         QueryWrapper<User> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("password",pwd2);
+        queryWrapper.eq("password", pwd2);
         boolean bool = userService.updateById(user);
-        if(bool)
+        if (bool)
             return "1";
         return "0";
     }
@@ -185,22 +185,22 @@ public class UserController {
     //上传图片
     @RequestMapping("/upload")
     @ResponseBody
-    public Map<String,Object> upload(HttpSession session, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+    public Map<String, Object> upload(HttpSession session, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
 
         String picName = file.getOriginalFilename();
         String filePath = "D:\\image\\" + picName;
         File dest = new File(filePath);
         file.transferTo(dest);
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         user.setHead(picName);
         boolean bool = userService.updateById(user);
-        Map map = new HashMap<String,Object>();
-        if(bool){
-            map.put("msg","ok");
-            map.put("code",200);
-        } else{
-            map.put("msg","error");
-            map.put("code",0);
+        Map map = new HashMap<String, Object>();
+        if (bool) {
+            map.put("msg", "ok");
+            map.put("code", 200);
+        } else {
+            map.put("msg", "error");
+            map.put("code", 0);
         }
         return map;
     }
@@ -210,9 +210,9 @@ public class UserController {
     public String downImage(@RequestParam String imageName, HttpServletRequest request, HttpServletResponse response) {
         String fileUrl = "D:\\image\\" + imageName;
         System.out.println("the imageName is : " + fileUrl);
-        if(fileUrl != null) {
+        if (fileUrl != null) {
             File file = new File(fileUrl);
-            if(file.exists()) {
+            if (file.exists()) {
                 response.setContentType("application/force-download");
                 response.addHeader("Content-Disposition",
                         "attachment;fileName=" + imageName);//设置文件名
@@ -232,14 +232,14 @@ public class UserController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    if(bis != null) {
+                    if (bis != null) {
                         try {
                             bis.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    if(fis != null){
+                    if (fis != null) {
                         try {
                             fis.close();
                         } catch (IOException e) {

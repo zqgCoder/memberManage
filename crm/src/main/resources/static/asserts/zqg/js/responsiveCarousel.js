@@ -40,10 +40,10 @@
             ondragend: null,
             dragEvents: false,
             easing: 'linear',
-			speed: 400,
-			slideSpeed: 2500,
-			step: -1,
-			responsiveStep: null,
+            speed: 400,
+            slideSpeed: 2500,
+            step: -1,
+            responsiveStep: null,
             onShift: null,
             cssAnimations: Modernizr.csstransitions,
             nudgeThreshold: 10,
@@ -78,7 +78,7 @@
             if (elem.style[prop]) {
                 pref = prop.toLowerCase();
             } else {
-                pref =  '-' + pref.toLowerCase() + '-';
+                pref = '-' + pref.toLowerCase() + '-';
             }
 
             return pref;
@@ -104,7 +104,7 @@
         _round: function (x) {
             // round x to the nearest interval of internal.unitWidth
             if (this.options.unitWidth === 'compute' || this.options.unitWidth === 'inherit' || this.options.unitWidth === 'integer') {
-                x = Math.round( x / this.internal.unitWidth) * this.internal.unitWidth;
+                x = Math.round(x / this.internal.unitWidth) * this.internal.unitWidth;
             }
             return x;
         },
@@ -132,7 +132,7 @@
                 diff = currentLeft + newLeft,
                 i,
 
-                _transition = function(o) {
+                _transition = function (o) {
                     $target.css(o);
                 },
 
@@ -144,14 +144,14 @@
                     $el.get(0).offsetHeight; // no need to store this anywhere, the reference is enough
                     $el.show();
 
-                    window.setTimeout(function(){
+                    window.setTimeout(function () {
                         $el.remove();
-                    },1);
+                    }, 1);
 
                 };
 
 
-            $target.css(transition,'');
+            $target.css(transition, '');
             // need to force a repaint to ensure that the previous transition (if any) is really gone
             _forceRepaint();
 
@@ -164,17 +164,17 @@
                         i = internal.unitWidth * (internal.numUnits - internal.numVisibleUnits) * -1;
                         if (currentLeft === i) {
                             // Yes! Jump to start of carousel first
-                            $target.css('left',0);
+                            $target.css('left', 0);
                             props.left = -internal.unitWidth;
                         }
                         // No! Go ahead and slide left
                     } else if (newLeft > currentLeft) {
                         // sliding to the right
                         // Is current left at 0?
-                        if (currentLeft === 0 ) {
+                        if (currentLeft === 0) {
                             // Yes! Jump to the start of the clones
                             i = Math.floor($target.find('.clone:first').position().left) * -1;
-                            $target.css('left',i);
+                            $target.css('left', i);
                             props.left = i + diff;
                         }
                         // No! Go ahead and slide right
@@ -183,10 +183,9 @@
             }
 
 
-
             // animate our correction - we have to defer this next bit to ensure our CSS is applied.
             // someday: switch setTimeout to requestAnimationFrame, ditch jQuery animate for requestAnimationFrame
-            window.setTimeout(function(){
+            window.setTimeout(function () {
                 if (options.cssAnimations) {
                     $target.css(transition, 'left ' + speed / 1000 + 's ' + options.easing);
                     _transition(props);
@@ -204,7 +203,7 @@
                         }
                     });
                 }
-            },1);
+            }, 1);
 
         },
 
@@ -216,7 +215,7 @@
          * requestAnimationFrame polyfill by Erik MÃ¶ller
          * fixes from Paul Irish and Tino Zijdel
          */
-        _requestAnimationFrameShim: function() {
+        _requestAnimationFrameShim: function () {
             var lastTime = 0,
                 vendors = ['ms', 'moz', 'webkit', 'o'],
                 x;
@@ -224,25 +223,25 @@
             // If this is already created, or exists natively, no need to do it again.
             if (!window.requestAnimationFrame || !window.cancelAnimationFrame) {
 
-                for(x = 0; x < vendors.length && !window.requestAnimationFrame; x = x + 1) {
-                    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-                    window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+                for (x = 0; x < vendors.length && !window.requestAnimationFrame; x = x + 1) {
+                    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+                    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
                 }
 
                 if (!window.requestAnimationFrame) {
-                    window.requestAnimationFrame = function(callback) {
+                    window.requestAnimationFrame = function (callback) {
                         var currTime = new Date().getTime(),
                             timeToCall = Math.max(0, 16 - (currTime - lastTime)),
-                            id = window.setTimeout(function() {
-                                    callback(currTime + timeToCall);
-                                },timeToCall);
+                            id = window.setTimeout(function () {
+                                callback(currTime + timeToCall);
+                            }, timeToCall);
                         lastTime = currTime + timeToCall;
                         return id;
                     };
                 }
 
                 if (!window.cancelAnimationFrame) {
-                    window.cancelAnimationFrame = function(id) {
+                    window.cancelAnimationFrame = function (id) {
                         clearTimeout(id);
                     };
                 }
@@ -271,7 +270,7 @@
                 var width,
                     $this = $(dom);
                 // clear any previous width that we set.  Let the browser re-draw naturally.
-                $this.css('width','');
+                $this.css('width', '');
 
                 // get rid of any sub-pixels. Only whole numbers please.  Some browsers have sub pixels
                 // even though we set stuff to whole numbers.  Might have to do with borders or
@@ -283,12 +282,12 @@
                 internal.targetWidth = internal.targetWidth + width;
 
                 // store all this in a data
-                $this.data("responsiveCarousel",{
-                    'width' : width,
-                    'top' : Math.floor($this.position().top),
-                    'right' : Math.floor($this.position().left) + $this.width(),
-                    'bottom' : Math.floor($this.position().top) + $this.height(),
-                    'left' : Math.floor($this.position().left)
+                $this.data("responsiveCarousel", {
+                    'width': width,
+                    'top': Math.floor($this.position().top),
+                    'right': Math.floor($this.position().left) + $this.width(),
+                    'bottom': Math.floor($this.position().top) + $this.height(),
+                    'left': Math.floor($this.position().left)
                 });
             }
 
@@ -303,7 +302,7 @@
             }
             // All other unitWidth modes have units with identical widths.
             else {
-                internal.targetWidth =  internal.numUnits * internal.unitWidth;
+                internal.targetWidth = internal.numUnits * internal.unitWidth;
             }
 
 
@@ -315,7 +314,7 @@
 
         /**
          * Set the visibility of the left and right scroll arrows.  Also computes the number of
-		 * the left-most visible slide for all modes besides 'individual'
+         * the left-most visible slide for all modes besides 'individual'
          * @private
          * @return void
          */
@@ -329,10 +328,10 @@
                 maskLeft = 0,
                 i,
                 maskRight = internal.maskWidth,
-                currentLeft  = this._round(Math.floor($target.position().left)), // position does not include for margin & border of parent
+                currentLeft = this._round(Math.floor($target.position().left)), // position does not include for margin & border of parent
                 currentRight = internal.targetWidth + currentLeft;
 
-			// right arrow
+            // right arrow
             if ($arrowRight.length) {
                 if (options.infinite !== true && currentRight <= maskRight) {
                     $arrowRight.addClass('disabled');
@@ -347,14 +346,14 @@
             }
 
 
-			// left arrow
+            // left arrow
             if ($arrowLeft.length) {
                 if (options.infinite !== true && currentLeft >= maskLeft) {
                     $arrowLeft.addClass('disabled');
                     if (internal.isArrowBeingClicked === true) {
                         this._clearInterval();
                     }
-                    internal.arrowLeftVisible = internal.isArrowBeingClicked  = false;
+                    internal.arrowLeftVisible = internal.isArrowBeingClicked = false;
                 } else {
                     $arrowLeft.removeClass('disabled');
                     internal.arrowLeftVisible = true;
@@ -363,8 +362,8 @@
             }
 
 
-			// determine number of left-most visible slide
-            if (options.unitWidth !== 'individual')  {
+            // determine number of left-most visible slide
+            if (options.unitWidth !== 'individual') {
                 // All the other unit width modes (compute, inherit, integer) have units with the same
                 // width. So, it's easy to use math to find the current leftmost element.
                 // this could be NaN if slider is display:none.
@@ -374,35 +373,35 @@
 
 
             // call the onShift callback
-			if ($.isFunction(options.onShift)) {
+            if ($.isFunction(options.onShift)) {
                 if (typeof i === 'number') { // carousel might be hidden and therefore has no dimensions. So, no shift.
                     options.onShift(i);
                 }
-			} else if (options.onShift !== null ) {
+            } else if (options.onShift !== null) {
                 throw new Error('The onShift option must be a function or null if not in use.');
             }
 
         },
 
 
-        _clearInterval : function () {
+        _clearInterval: function () {
             var internal = this.internal;
 
 
             if ('number' === typeof internal.timer) {
-                internal.isArrowBeingClicked  = false;
+                internal.isArrowBeingClicked = false;
                 window.clearInterval(internal.timer);
             }
 
         },
 
-		/**
-		 * Handles when one of navigation arrows is being pressed with a finger or the mouse.
+        /**
+         * Handles when one of navigation arrows is being pressed with a finger or the mouse.
          * Also determines the left or right most visible slide when mode set to 'individual'
-		 * @private
-		 * @return void
-		 */
-		_doArrowBeingClicked: function (direction) {
+         * @private
+         * @return void
+         */
+        _doArrowBeingClicked: function (direction) {
 
             var that = this,
                 internal = this.internal,
@@ -464,7 +463,7 @@
                     } else {
                         // switched direction from right to left, or page just loaded and this is first nav click
                         internal.lastArrowClicked = 'left';
-                        if ( $(options.unitElement).eq(internal.currentSlide).length ) {
+                        if ($(options.unitElement).eq(internal.currentSlide).length) {
                             l = Math.abs(currLeft);
                             while (i >= 0) {
                                 d = $(options.unitElement).eq(i).data('responsiveCarousel');
@@ -491,9 +490,9 @@
 
                 // all other unit width types (integer, compute, inherit) are uniform widths
                 if (direction === "left") {
-                    newLeft =  currLeft  + internal.unitWidth;
+                    newLeft = currLeft + internal.unitWidth;
                 } else if (direction === "right") {
-                    newLeft =  currLeft - internal.unitWidth;
+                    newLeft = currLeft - internal.unitWidth;
                 } else {
                     throw new Error("unknown direction");
                 }
@@ -512,8 +511,12 @@
             } else {
                 minLeft = 0;
             }
-            if (newLeft > 0) { newLeft = 0; }
-            if (newLeft < minLeft) { newLeft = minLeft; }
+            if (newLeft > 0) {
+                newLeft = 0;
+            }
+            if (newLeft < minLeft) {
+                newLeft = minLeft;
+            }
 
             newSpeed = newSpeed >= 100 ? newSpeed : 100;
 
@@ -573,7 +576,7 @@
             // left arrow, move left
             $arrowLeft.on(eventStringDown, function (ev) {
 
-				if(true === internal.ios6Device) {
+                if (true === internal.ios6Device) {
                     internal.busy = false;
                 }
 
@@ -581,7 +584,9 @@
                 ev.stopPropagation();
                 if (internal.busy === false && !$arrowLeft.hasClass('disabled')) {
                     internal.isArrowBeingClicked = internal.firstMouseClick = true;
-                    internal.timer = window.setInterval(function () {that._doArrowBeingClicked('left'); }, 10);
+                    internal.timer = window.setInterval(function () {
+                        that._doArrowBeingClicked('left');
+                    }, 10);
                     // stop the slideshow if the slideshow is running
                     if (internal.slideTimer) {
                         window.clearInterval(internal.slideTimer);
@@ -594,7 +599,7 @@
             // right arrow, move right
             $arrowRight.on(eventStringDown, function (ev) {
 
-				if(true === internal.ios6Device) {
+                if (true === internal.ios6Device) {
                     internal.busy = false;
                 }
 
@@ -602,9 +607,11 @@
                 ev.stopPropagation();
                 if (internal.busy === false && !$arrowRight.hasClass('disabled')) {
                     internal.isArrowBeingClicked = internal.firstMouseClick = true;
-                    internal.timer = window.setInterval(function () {that._doArrowBeingClicked('right'); }, 10);
-					// stop the slideshow if the slideshow is running
-					if (internal.slideTimer) {
+                    internal.timer = window.setInterval(function () {
+                        that._doArrowBeingClicked('right');
+                    }, 10);
+                    // stop the slideshow if the slideshow is running
+                    if (internal.slideTimer) {
                         window.clearInterval(internal.slideTimer);
                         internal.slideShowActive = false;
                     }
@@ -612,7 +619,7 @@
             });
 
             // mouse is up / touch is over?
-            $.each([$arrowLeft, $arrowRight], function (){
+            $.each([$arrowLeft, $arrowRight], function () {
                 $(this).on(eventStringUp, function () {
                     if (internal.isArrowBeingClicked === true) {
                         that._clearInterval();
@@ -621,24 +628,22 @@
             });
 
             // Other fringe events that require a cancel of an arrow touch event.
-            $(window).on('scroll' + this.instanceId, function() {
+            $(window).on('scroll' + this.instanceId, function () {
                 if (options.unitWidth !== 'individual') {
                     window.clearTimeout(internal.scrollTimer);
-                    internal.scrollTimer = window.setTimeout(function(){
+                    internal.scrollTimer = window.setTimeout(function () {
                         that._clearInterval();
-                    },100);
+                    }, 100);
                 }
             });
 
-            $(window).on(' resize' + this.instanceId + ' onorientationchange' + this.instanceId, function(){
+            $(window).on(' resize' + this.instanceId + ' onorientationchange' + this.instanceId, function () {
                 window.clearTimeout(internal.resizeTimer);
-                internal.resizeTimer = window.setTimeout(function(){
+                internal.resizeTimer = window.setTimeout(function () {
                     that._setTargetWidth();
                     that._clearInterval();
-                },100);
+                }, 100);
             });
-
-
 
 
         },
@@ -705,7 +710,7 @@
                         $target.find('.clone').remove();
 
                         // make new clones
-                        $units.slice(0,internal.numVisibleUnits).clone(true).addClass('clone').appendTo($target);
+                        $units.slice(0, internal.numVisibleUnits).clone(true).addClass('clone').appendTo($target);
                     }
 
                     internal.unitWidth = w;
@@ -720,7 +725,7 @@
                         // only do stuff if this is visible
                         if ($target.is(':hidden') === false || $target.is(':visible') === true) {
                             window.clearTimeout(internal.imageLoadTimer);
-                            internal.imageLoadTimer = window.setTimeout(function(){
+                            internal.imageLoadTimer = window.setTimeout(function () {
                                 // fire the responsiveUnitSize callback
                                 if ($.isFunction(options.responsiveUnitSize)) {
                                     _setResponsiveUnitWidth();
@@ -731,11 +736,10 @@
                                 if ($.isFunction(options.onRedraw)) {
                                     options.onRedraw($el, internal, options);
                                 }
-                            },400);
+                            }, 400);
                         }
                     });
                 };
-
 
 
             if (options.unitWidth === 'inherit') {
@@ -779,7 +783,7 @@
                 $target.find('img').one('load' + that.instanceId, function () {
                     if ($target.is(':hidden') === false || $target.is(':visible') === true) {
                         window.clearTimeout(internal.imageLoadTimer);
-                        internal.imageLoadTimer = window.setTimeout(function(){
+                        internal.imageLoadTimer = window.setTimeout(function () {
                             // fire the responsiveUnitSize callback
                             that._setTargetWidth();
                             that._setArrowVisibility();
@@ -795,7 +799,7 @@
                     var preAdjustSlide = internal.currentSlide;
 
                     clearTimeout(internal.setWidthTimer);
-                    internal.setWidthTimer = setTimeout(function(){
+                    internal.setWidthTimer = setTimeout(function () {
                         var adjust, d, minLeft, currLeft;
 
                         // only do stuff if the carousel is visible
@@ -818,7 +822,7 @@
                             minLeft = internal.maskWidth - internal.targetWidth;
                             if (currLeft < minLeft) {
                                 adjust = minLeft;
-                                internal.currentSlide = internal.numUnits -1;
+                                internal.currentSlide = internal.numUnits - 1;
                             }
                             if (currLeft > 0) {
                                 adjust = 0;
@@ -831,7 +835,7 @@
                             });
 
                             // wait an animation frame to ensure CSS adjustment has taken root
-                            window.requestAnimationFrame( function () {
+                            window.requestAnimationFrame(function () {
                                 that._setArrowVisibility('_setUnitWidth individual resize');
                                 if ($.isFunction(options.onRedraw)) {
                                     options.onRedraw($el, internal, options);
@@ -864,7 +868,8 @@
                 length = $doms.length;
                 for (q = 0; q < length; ++q) {
                     _imgCompute($doms[q]);
-                };
+                }
+                ;
 
                 // re-import the width every time the page is re-sized.
                 $(window).on('resize' + that.instanceId, function () {
@@ -873,7 +878,7 @@
                     window.clearTimeout(internal.setWidthTimer);
                     // only do stuff if the target is visible
                     if ($target.is(':hidden') === false || $target.is(':visible') === true) {
-                        internal.setWidthTimer = setTimeout(function(){
+                        internal.setWidthTimer = setTimeout(function () {
                             var adjust,
                                 minLeft = (-1 * internal.numUnits * internal.unitWidth) + internal.maskWidth;
 
@@ -978,22 +983,22 @@
                         if (distance > options.nudgeThreshold) {
                             if (ev.direction === 'up' || ev.direction === 'left') {
                                 internal.nudgeDirection = 'left';
-                            } else  {
+                            } else {
                                 internal.nudgeDirection = 'right';
                             }
                         }
                     } else {
                         if ((distance > options.nudgeThreshold) && (distance < internal.unitWidth / 2)) {
-                           if (direction === 'up' || direction === 'left') {
-                               internal.nudgeDirection = 'left';
-                           } else {
-                               internal.nudgeDirection = 'right';
-                           }
-                       } else if (distance <= options.nudgeThreshold) {
-                           internal.nudgeDirection = 'abort';
-                       } else {
-                           internal.nudgeDirection = null;
-                       }
+                            if (direction === 'up' || direction === 'left') {
+                                internal.nudgeDirection = 'left';
+                            } else {
+                                internal.nudgeDirection = 'right';
+                            }
+                        } else if (distance <= options.nudgeThreshold) {
+                            internal.nudgeDirection = 'abort';
+                        } else {
+                            internal.nudgeDirection = null;
+                        }
                     }
 
                     // hey!  infinite scrolling!
@@ -1040,7 +1045,7 @@
                     return {};
                 }
 
-                if(true === internal.ios6Device) {
+                if (true === internal.ios6Device) {
                     // ios6 has a bug where scrolling destroys/resets all timer events, our "busy" flag stays true eternally.
                     internal.busy = false;
                 } else {
@@ -1074,7 +1079,7 @@
                 window.cancelAnimationFrame(internal.dragTimer);
 
                 $target.stop(true, false);
-                window.requestAnimationFrame(function(){
+                window.requestAnimationFrame(function () {
                     that._animate($target, {left: that.computeAdjust($target)}, options.speed, function () {
                         that._setArrowVisibility();
                         internal.busy = false;
@@ -1153,7 +1158,7 @@
             // --------------------
 
             // backup original target element
-            this.internal.backup = $target.clone(true,true);
+            this.internal.backup = $target.clone(true, true);
 
             // if we are using css3 animations, determine the browser specific prefix (-ie,-moz,-webkit, etc)
             if (this.options.cssAnimations) {
@@ -1162,11 +1167,11 @@
 
             // hey, mobile safari has a huge bug on iOS6
             // http://openradar.appspot.com/12756410
-         	if(/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) {
-                if(/OS 6_/i.test(navigator.userAgent)){
-                	this.internal.ios6Device = true;
+            if (/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) {
+                if (/OS 6_/i.test(navigator.userAgent)) {
+                    this.internal.ios6Device = true;
                 }
-        	}
+            }
 
             this._requestAnimationFrameShim();
 
@@ -1195,8 +1200,8 @@
             // initialize lazy load
             if (options.lazyload === true) {
                 $(options.target).find('img.lazy-slider').lazyload({
-                    effect : "fadeIn",
-                    skip_invisible : false
+                    effect: "fadeIn",
+                    skip_invisible: false
                 });
             }
 
@@ -1215,7 +1220,6 @@
             if ($.isFunction(options.onRedraw)) {
                 options.onRedraw($el, this.internal, options);
             }
-
 
 
         },
@@ -1243,7 +1247,7 @@
                 for (i = internal.currentSlide; i < j; i = i + 1) {
                     $unit = $units.eq(i);
                     if ($unit.length) {
-                        $unit.find('img.lazy-slider:not([loaded="true"])').each(function(){
+                        $unit.find('img.lazy-slider:not([loaded="true"])').each(function () {
                             _triggerAppear(this);
                         });
                     }
@@ -1252,7 +1256,7 @@
 
             function _loadAllImages() {
                 var count = 0;
-                $(options.target).find('img.lazy-slider:not([loaded="true"])').each(function(){
+                $(options.target).find('img.lazy-slider:not([loaded="true"])').each(function () {
                     $(this).trigger('appear');
                     count = count + 1;
                 });
@@ -1282,7 +1286,7 @@
                     // try lazy loading the visible images right now, then try again on window load.
                     // by trying both times, all possible circumstances are covered.
                     _loadInitialImages();
-                    $(window).on('load',function(){
+                    $(window).on('load', function () {
                         _loadInitialImages();
                     });
 
@@ -1294,7 +1298,7 @@
                         // see if we are already passed the threshold.  Otherwise, wait for a scroll event.
                         if (false === _loadScrollThresholdImages()) {
                             // wasn't in range yet, so set up an event to wait for it to scroll into range
-                            $(window).on('scroll.tempevent' + id,function(){
+                            $(window).on('scroll.tempevent' + id, function () {
                                 if (true === _loadScrollThresholdImages()) {
                                     $(window).unbind('scroll.tempevent' + id);
                                 }
@@ -1303,9 +1307,9 @@
 
                     } else {
                         // non touch devices, lazy load the entire carousel on mouse over
-                        $.each([$(options.target), $(options.arrowLeft), $(options.arrowRight)],function(){
+                        $.each([$(options.target), $(options.arrowLeft), $(options.arrowRight)], function () {
                             var that = this;
-                            that.on('mouseover.tempevent', function(){
+                            that.on('mouseover.tempevent', function () {
                                 _loadAllImages();
                                 that.unbind('.tempevent');
                             });
@@ -1333,8 +1337,6 @@
                 $el = $(this.element);
 
 
-
-
             // only redraw if the slider is visible, otherwise it gets all zeros
             // ie requires .not(":hidden")
             if ($(options.target).is(":visible") || $(options.target).not(":hidden")) {
@@ -1346,7 +1348,7 @@
                 if ($.isFunction(this.options.onRedraw)) {
                     that.options.onRedraw($el, internal, options);
                 }
-                if (options.lazyload === true){
+                if (options.lazyload === true) {
                     that._lazyLoad();
                 }
             }
@@ -1357,26 +1359,26 @@
          * @public
          * @return integer
          */
-		getCurrentSlide: function () {
-			return this.internal.currentSlide;
-		},
+        getCurrentSlide: function () {
+            return this.internal.currentSlide;
+        },
 
         /**
          * Make a specified slide the left-most visible slide in the slider
          * @public
          */
-		goToSlide: function (i,a) {
+        goToSlide: function (i, a) {
             var that = this,
                 internal = this.internal,
-				options = this.options,
-				$target = $(options.target),
-				newLeft;
+                options = this.options,
+                $target = $(options.target),
+                newLeft;
 
             a = (a !== undefined) ? a : true;
 
             // only do stuff if the target is visible, otherwise widths are all 0's
-            if ($target.not(":hidden"))  {
-                if (this.unitWidth === undefined){
+            if ($target.not(":hidden")) {
+                if (this.unitWidth === undefined) {
                     this._setUnitWidth();
                 }
 
@@ -1385,36 +1387,36 @@
                 } else {
                     newLeft = i * internal.unitWidth * -1;
                 }
-    			internal.busy = true;
+                internal.busy = true;
                 if (a === true) {
                     this._animate($target, {'left': newLeft}, options.speed, function () {
                         internal.busy = false;
                         that._setArrowVisibility('goto slide');
                     });
                 } else {
-                    $target.css('left',newLeft);
+                    $target.css('left', newLeft);
                 }
             }
 
-		},
+        },
 
         /**
          * Activate / Deactivate slide show mode.
          * @public
          */
-		toggleSlideShow: function () {
+        toggleSlideShow: function () {
 
 
-			var internal = this.internal;
+            var internal = this.internal;
 
 
-			if (false === internal.slideShowActive) {
-				this.startSlideShow();
-			} else {
-				this.stopSlideShow();
-			}
+            if (false === internal.slideShowActive) {
+                this.startSlideShow();
+            } else {
+                this.stopSlideShow();
+            }
 
-		},
+        },
 
         _step: function (i) {
             var that = this,
@@ -1432,7 +1434,7 @@
             if (internal.slideBumped === false) {
 
                 if (options.infinite === false) {
-                     // too far left
+                    // too far left
                     if (newRight <= width) {
                         adjustedLeft = newLeft + width - newRight;
                         internal.slideBumped = 'left';
@@ -1515,7 +1517,7 @@
                 this.internal.touchObject.destroy();
             }
             $mask.css({
-                '-webkit-user-select' : '',
+                '-webkit-user-select': '',
                 '-webkit-user-drag': '',
                 '-webkit-tap-highlight-color': ''
             });
@@ -1528,7 +1530,6 @@
         },
 
 
-
         /**
          * Try to keep the leftmost visible element (usually an LI) flush against the left border.
          * Use this to prevent on fractions of elements from being visible.
@@ -1537,7 +1538,7 @@
          * @param s string Optional string used for debugging
          * @return integer
          */
-        computeAdjust : function ($target) {
+        computeAdjust: function ($target) {
 
 
             var internal = this.internal,
@@ -1655,7 +1656,6 @@
             }
 
 
-
             if (isNaN(newLeft) === true) {
                 newLeft = 0;
             }
@@ -1664,7 +1664,7 @@
             return newLeft;
         },
 
-        getNumVisibleUnits : function () {
+        getNumVisibleUnits: function () {
             return this.internal.numVisibleUnits;
         }
 

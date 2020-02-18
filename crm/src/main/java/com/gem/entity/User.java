@@ -2,12 +2,15 @@ package com.gem.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.time.LocalDate;
 
-/**实体类*/
+/**
+ * 实体类
+ */
 @Data
 @TableName("USER")
 public class User {
@@ -18,6 +21,8 @@ public class User {
     private String gender;
     private LocalDate birthday; //JDK8.0日期类型
     private String head;    //用户的头像
+    private String statement;
+    @TableLogic
     private Integer deleted;    //作为伪删除的标志
 
     public String getUsername() {
@@ -28,9 +33,10 @@ public class User {
         this.username = username;
     }
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String username, String password){
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

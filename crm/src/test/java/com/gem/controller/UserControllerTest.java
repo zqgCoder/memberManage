@@ -30,6 +30,7 @@ class UserControllerTest {
             System.out.println("登录失败");
         }
     }
+
     @Test
     void update_pwd() {
     }
@@ -37,7 +38,7 @@ class UserControllerTest {
     @Test
     void update_password() {
         LocalDateTime ldt = LocalDateTime.now();
-        System.out.println(ldt + " " + ldt.getYear() );
+        System.out.println(ldt + " " + ldt.getYear());
 
     }
 

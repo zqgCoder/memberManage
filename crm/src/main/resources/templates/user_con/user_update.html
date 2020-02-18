@@ -20,7 +20,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" required name="username" id="username" autocomplete="off" placeholder="请输入姓名" class="layui-input" th:value="${session.user.getUsername()}">
+            <input type="text" required name="username" id="username" autocomplete="off" placeholder="请输入姓名"
+                   class="layui-input" th:value="${session.user.getUsername()}">
         </div>
     </div>
     <div class="layui-form-item">
@@ -44,7 +45,8 @@
         <div class="layui-input-inline">
             <div class="layui-upload-list">
                 <!-- th:href="@{/hello(pid=1,id=${person.id})}"-->
-                <img class="layui-upload-img" th:src="@{/user/downImage(imageName=${session.user.getHead()})}" id="demo1">
+                <img class="layui-upload-img" th:src="@{/user/downImage(imageName=${session.user.getHead()})}"
+                     id="demo1">
                 <p id="demoText"></p>
             </div>
         </div>
@@ -61,7 +63,7 @@
 </form>
 
 <script>
-    layui.use(['form', 'layedit', 'laydate','upload'], function(){
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
         var form = layui.form,
             layer = layui.layer,
             layedit = layui.layedit,
@@ -72,24 +74,23 @@
         var editIndex = layedit.build('LAY_demo_editor');
         form.render();
         laydate.render({
-            elem : '#time1'
+            elem: '#time1'
         });
 
         //上传
         var uploadInst = upload.render({
             elem: '#upload_btn'      //绑定元素
             , url: '/crm/user/upload'   //上传接口
-            , method : 'post'
-            ,before: function (obj) {
+            , method: 'post'
+            , before: function (obj) {
                 obj.preview(function (index, file, result) {
                     $("#demo1").attr('src', result);
                 });
             }
-            ,done: function(res) {
-                if(res.code > 0) {
+            , done: function (res) {
+                if (res.code > 0) {
                     return layer.msg("上传成功");
-                }
-                else{
+                } else {
                     return layer.msg("上传成功");
                 }
             }
@@ -98,26 +99,26 @@
     });
 
     function update_user() {
-        var username =$("#username").val();
+        var username = $("#username").val();
         var gender = $("#gender").val();
         var time = $("#time1").val();
 
         var patr = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
-        if(username == null){
+        if (username == null) {
             layer.msg("用户名不能为空");
             return;
-        }
-        else if(!patr.exec(username)){
+        } else if (!patr.exec(username)) {
             layer.msg("用户名太简单了");
             return;
-        };
-        $.post("/crm/user/update", {username:username, gender : gender,birthday : time}, function(data) {
-            if(data == 1){
+        }
+        ;
+        $.post("/crm/user/update", {username: username, gender: gender, birthday: time}, function (data) {
+            if (data == 1) {
                 layer.msg("修改成功");
-            } else if(data == 3){
-                layer.msg("用户名已存在，请重新填写" );
-            } else{
-                layer.msg("网络异常，请稍后再试" );
+            } else if (data == 3) {
+                layer.msg("用户名已存在，请重新填写");
+            } else {
+                layer.msg("网络异常，请稍后再试");
             }
         })
     }

@@ -19,6 +19,9 @@ spring:
     url: jdbc:mysql://localhost:3306/member?serverTimezone=GMT%2B8
     username: root
     password: root12
+  messages:
+    basename: il8n/messages #相对路径 开头请勿添加斜杠
+    encoding: UTF-8
 
   mvc:
     static-path-pattern: /**
@@ -39,4 +42,8 @@ logging:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #使用驼峰法映射属性,配置这个resultType可以映射
+    map-underscore-to-camel-case: true
+  #MyBatis Mapper 所对应的 XML 文件位置
+  mapper-locations: classpath*:mapper/*.xml
 
